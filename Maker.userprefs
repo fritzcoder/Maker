@@ -1,0 +1,41 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MacGame/Game.cs">
+    <Files>
+      <File FileName="MacGame/Game.cs" Line="104" Column="65" />
+      <File FileName="../../../Ubuntu One/maker/maker/GameMain.cs" Line="17" Column="30" />
+      <File FileName="MacGame/Classes/Level.cs" Line="66" Column="13" />
+      <File FileName="MacGame/Classes/AnimatedSprite.cs" Line="23" Column="22" />
+      <File FileName="MacGame/Main.cs" Line="28" Column="15" />
+      <File FileName="MacGame/Classes/Sprite.cs" Line="25" Column="11" />
+      <File FileName="MacGame/Classes/Objekt.cs" Line="84" Column="10" />
+      <File FileName="MacGame/Classes/Tile.cs" Line="46" Column="37" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Maker" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Classes" expanded="True" />
+            <Node name="Content" expanded="True" />
+            <Node name="Game.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True">
+          <Node name="Maker" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/ontehfritz/Documents/Projects/MonoGame-MacGame/MacGame/Classes/AnimatedSprite.cs" line="19" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
