@@ -75,16 +75,42 @@
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\Camera.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Classes\HelpScreen.cs" />
+    <Compile Include="Classes\Fonts.cs" />
+    <Compile Include="Classes\InputManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="Content\Textures\HUD\CombatPopup.png" />
+    <None Include="Content\Textures\HUD\CombatPopup.xnb" />
+    <None Include="Content\Textures\HUD\CombatStateInfoStrip.png" />
+    <None Include="Content\Textures\HUD\CombatStateInfoStrip.xnb" />
+    <None Include="Content\Textures\HUD\HudBkgd.png" />
+    <None Include="Content\Textures\HUD\HudBkgd.xnb" />
+    <None Include="Content\Textures\HUD\HudSelectButton.png" />
+    <None Include="Content\Textures\HUD\HudSelectButton.xnb" />
+    <None Include="Content\Textures\HUD\Menu.png" />
+    <None Include="Content\Textures\HUD\Menu.xnb" />
+    <None Include="Content\Textures\HUD\PlankActive.png" />
+    <None Include="Content\Textures\HUD\PlankActive.xnb" />
+    <None Include="Content\Textures\HUD\PlankCantUse.png" />
+    <None Include="Content\Textures\HUD\PlankCantUse.xnb" />
+    <None Include="Content\Textures\HUD\PlankInActive.png" />
+    <None Include="Content\Textures\HUD\PlankInActive.xnb" />
+    <None Include="Content\Textures\HUD\SelectionBrackets.png" />
+    <None Include="Content\Textures\HUD\SelectionBrackets.xnb" />
+    <None Include="Content\Textures\HUD\Stats.png" />
+    <None Include="Content\Textures\HUD\Stats.xnb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Classes\" />
+    <Folder Include="Content\Textures\" />
+    <Folder Include="Content\New Folder\" />
+    <Folder Include="Content\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />
@@ -115,6 +141,222 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\mouse-pointer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\AButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\DescriptionFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\MainMenu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\Confirm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\ControlJoystick.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\GameLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\KeyboardBkgd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\LoadingPause.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\LoadingScreenStrip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\MainMenuInfoSpace.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\MainMenuPlank.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\MainMenuPlank01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\MainMenuPlank02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\MainMenu\MainMenuPlank03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\BackButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\BButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\CharSelectFadeLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\CharSelectFadeRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\CharSelectHlLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\CharSelectHlRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\LeftTriggerButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\QuantityArrowLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\QuantityArrowRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\RightTriggerButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\StartButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\XButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Buttons\YButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\Caption.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\CaptionBackGround.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\CaptionBackGroundLarge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\ConversationStrip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\CountShieldWithArrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\FadeScreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\FadeScreen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\GameScreenBkgd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\GearScoreBoard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\GoldIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\Highlight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\HighlightLarge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\InfoDisplay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\LineBorder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\PlayerSelected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\PlayerUnSelected.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\PopupScreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\ScoreBoard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\ScrollButtons.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\ScrollDown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\ScrollUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\SelectionArrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\SeparationLine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\StatsBorderTable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\TickMark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\GameScreens\TitleBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\HeaderFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\CaptionFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\DamageFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\DebugFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\GearInfoFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\HudDetailFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\PlayerNameFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\PlayerStatisticsFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\ButtonNamesFont.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\ButtonNamesFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\CaptionFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\DamageFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\DebugFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\DescriptionFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\GearInfoFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\HeaderFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\HudDetailFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\PlayerNameFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\PlayerStatisticsFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

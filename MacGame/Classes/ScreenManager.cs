@@ -1,5 +1,5 @@
 using System;
-using System;
+
 using System.Diagnostics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -95,6 +95,7 @@ namespace maker
           base.Initialize();
           
           isInitialized = true;
+            LoadContent();
         }
         
         
@@ -106,7 +107,7 @@ namespace maker
           // Load content belonging to the screen manager.
           ContentManager content = Game.Content;
           
-          spriteBatch = new SpriteBatch(GraphicsDevice);
+          spriteBatch = new SpriteBatch(Game.GraphicsDevice);
           
           // Tell each of the screens to load their content.
           foreach (GameScreen screen in screens)

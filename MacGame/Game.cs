@@ -15,6 +15,7 @@ namespace maker
         Dictionary<string, Objekt> objekts; 
         public Camera camera;
         public bool _jump = false;
+        public HelpScreen testscreen;
         Level level; 
 
         public MacGame() {
@@ -28,6 +29,7 @@ namespace maker
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
+            //testscreen = new HelpScreen();
 
             camera = new Camera(new Vector2(0,0));
             spriteBatch = new SpriteBatch (GraphicsDevice);
@@ -35,6 +37,13 @@ namespace maker
             level.Load("test");
             objekts = level._objekts;
             screenManager = new ScreenManager(this);
+            testscreen = new HelpScreen();
+            //testscreen.IsActive = true;
+            //testscreen.
+            screenManager.AddScreen(testscreen);
+            screenManager.Initialize();
+           
+
 
             base.Initialize();
         }
@@ -130,7 +139,8 @@ namespace maker
                 camera.Position = 
                     new Vector2(player.Position.X - graphics.GraphicsDevice.DisplayMode.Width / 2,0);
             
-            // TODO: Add your update logic here         
+            // TODO: Add your update logic here 
+            //screenManager.Update(gameTime);
             base.Update (gameTime);
         }
 
@@ -161,7 +171,7 @@ namespace maker
             }
             
             spriteBatch.End();
-            
+            screenManager.Draw(gameTime);
             base.Draw (gameTime);
         }
     }
