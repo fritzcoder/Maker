@@ -20,32 +20,29 @@ namespace maker
 
         public MacGame() {
             graphics = new GraphicsDeviceManager (this);
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = true;       
             objekts = new Dictionary<string, Objekt>();
+            screenManager = new ScreenManager(this);
+            Components.Add(screenManager);
+            testscreen = new HelpScreen();
         }
 
         protected override void Initialize () {
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.ApplyChanges();
-            //testscreen = new HelpScreen();
+            base.Initialize();
+            InputManager.Initialize();
 
+            //graphics.ApplyChanges();
+            //testscreen = new HelpScreen();
+            Fonts.LoadContent(this.Content);
             camera = new Camera(new Vector2(0,0));
             spriteBatch = new SpriteBatch (GraphicsDevice);
+            screenManager.AddScreen(testscreen);
             level = new Level(this);
             level.Load("test");
             objekts = level._objekts;
-            screenManager = new ScreenManager(this);
-            testscreen = new HelpScreen();
-            //testscreen.IsActive = true;
-            //testscreen.
-            screenManager.AddScreen(testscreen);
-            screenManager.Initialize();
-           
-
-
-            base.Initialize();
         }
 
         //protected override void Draw(GameTime gameTime) {

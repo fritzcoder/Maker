@@ -137,7 +137,6 @@ namespace maker {
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            Fonts.LoadContent(ScreenManager.Game.Content);
             textLines = Fonts.BreakTextIntoList(helpText, Fonts.DescriptionFont, 590);
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             

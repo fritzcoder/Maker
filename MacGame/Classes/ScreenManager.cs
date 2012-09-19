@@ -95,7 +95,7 @@ namespace maker
           base.Initialize();
           
           isInitialized = true;
-            LoadContent();
+           // LoadContent();
         }
         
         
