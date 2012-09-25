@@ -32,25 +32,16 @@ namespace maker
             MainMenu,
             Ok,
             Back,
-            CharacterManagement,
             ExitGame,
-            TakeView,
-            DropUnEquip,
             MoveCharacterUp,
             MoveCharacterDown,
             MoveCharacterLeft,
             MoveCharacterRight,
             CursorUp,
             CursorDown,
-            DecreaseAmount,
-            IncreaseAmount,
             PageLeft,
             PageRight,
-            TargetUp,
-            TargetDown,
-            ActiveCharacterLeft,
-            ActiveCharacterRight,
-            TotalActionCount,
+            TotalActionCount, //This must be the last enum
         }
         
         
@@ -62,24 +53,15 @@ namespace maker
                 "Main Menu",
                 "Ok",
                 "Back",
-                "Character Management",
                 "Exit Game",
-                "Take / View",
-                "Drop / Unequip",
                 "Move Character - Up",
                 "Move Character - Down",
                 "Move Character - Left",
                 "Move Character - Right",
                 "Move Cursor - Up",
                 "Move Cursor - Down",
-                "Decrease Amount",
-                "Increase Amount",
                 "Page Screen Left",
-                "Page Screen Right",
-                "Select Target -Up",
-                "Select Target - Down",
-                "Select Active Character - Left",
-                "Select Active Character - Right",
+                "Page Screen Right"
             };
 
         /// <summary>
@@ -167,6 +149,7 @@ namespace maker
         /// </summary>
         private static KeyboardState currentKeyboardState;
 
+
         /// <summary>
         /// The state of the keyboard as of the last update.
         /// </summary>
@@ -175,12 +158,19 @@ namespace maker
             get { return currentKeyboardState; }
         }
 
-
+        private static MouseState currentMouseState;
         /// <summary>
         /// The state of the keyboard as of the previous update.
         /// </summary>
-        private static KeyboardState previousKeyboardState;
+        public static KeyboardState previousKeyboardState;
 
+
+        private static MouseState CurrentMouseState {
+            get { return currentMouseState; }
+        }
+         
+
+        private static MouseState previousMouseState;
 
         /// <summary>
         /// Check if a key is pressed.
@@ -743,29 +733,11 @@ namespace maker
             actionMaps[(int)Action.Back].gamePadButtons.Add(
                 GamePadButtons.B);
 
-            actionMaps[(int)Action.CharacterManagement] = new ActionMap();
-            actionMaps[(int)Action.CharacterManagement].keyboardKeys.Add(
-                Keys.Space);
-            actionMaps[(int)Action.CharacterManagement].gamePadButtons.Add(
-                GamePadButtons.Y);
-
             actionMaps[(int)Action.ExitGame] = new ActionMap();
             actionMaps[(int)Action.ExitGame].keyboardKeys.Add(
                 Keys.Escape);
             actionMaps[(int)Action.ExitGame].gamePadButtons.Add(
                 GamePadButtons.Back);
-
-            actionMaps[(int)Action.TakeView] = new ActionMap();
-            actionMaps[(int)Action.TakeView].keyboardKeys.Add(
-                Keys.LeftControl);
-            actionMaps[(int)Action.TakeView].gamePadButtons.Add(
-                GamePadButtons.Y);
-
-            actionMaps[(int)Action.DropUnEquip] = new ActionMap();
-            actionMaps[(int)Action.DropUnEquip].keyboardKeys.Add(
-                Keys.D);
-            actionMaps[(int)Action.DropUnEquip].gamePadButtons.Add(
-                GamePadButtons.X);
 
             actionMaps[(int)Action.MoveCharacterUp] = new ActionMap();
             actionMaps[(int)Action.MoveCharacterUp].keyboardKeys.Add(
@@ -803,18 +775,6 @@ namespace maker
             actionMaps[(int)Action.CursorDown].gamePadButtons.Add(
                 GamePadButtons.Down);
 
-            actionMaps[(int)Action.DecreaseAmount] = new ActionMap();
-            actionMaps[(int)Action.DecreaseAmount].keyboardKeys.Add(
-                Keys.Left);
-            actionMaps[(int)Action.DecreaseAmount].gamePadButtons.Add(
-                GamePadButtons.Left);
-
-            actionMaps[(int)Action.IncreaseAmount] = new ActionMap();
-            actionMaps[(int)Action.IncreaseAmount].keyboardKeys.Add(
-                Keys.Right);
-            actionMaps[(int)Action.IncreaseAmount].gamePadButtons.Add(
-                GamePadButtons.Right);
-
             actionMaps[(int)Action.PageLeft] = new ActionMap();
             actionMaps[(int)Action.PageLeft].keyboardKeys.Add(
                 Keys.LeftShift);
@@ -826,30 +786,6 @@ namespace maker
                 Keys.RightShift);
             actionMaps[(int)Action.PageRight].gamePadButtons.Add(
                 GamePadButtons.RightTrigger);
-
-            actionMaps[(int)Action.TargetUp] = new ActionMap();
-            actionMaps[(int)Action.TargetUp].keyboardKeys.Add(
-                Keys.Up);
-            actionMaps[(int)Action.TargetUp].gamePadButtons.Add(
-                GamePadButtons.Up);
-
-            actionMaps[(int)Action.TargetDown] = new ActionMap();
-            actionMaps[(int)Action.TargetDown].keyboardKeys.Add(
-                Keys.Down);
-            actionMaps[(int)Action.TargetDown].gamePadButtons.Add(
-                GamePadButtons.Down);
-
-            actionMaps[(int)Action.ActiveCharacterLeft] = new ActionMap();
-            actionMaps[(int)Action.ActiveCharacterLeft].keyboardKeys.Add(
-                Keys.Left);
-            actionMaps[(int)Action.ActiveCharacterLeft].gamePadButtons.Add(
-                GamePadButtons.Left);
-
-            actionMaps[(int)Action.ActiveCharacterRight] = new ActionMap();
-            actionMaps[(int)Action.ActiveCharacterRight].keyboardKeys.Add(
-                Keys.Right);
-            actionMaps[(int)Action.ActiveCharacterRight].gamePadButtons.Add(
-                GamePadButtons.Right);
         }
 
 
@@ -956,6 +892,9 @@ namespace maker
             // update the gamepad state
             previousGamePadState = currentGamePadState;
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
+
+            previousMouseState = currentMouseState;
+            currentMouseState = Mouse.GetState();
         }
 
 

@@ -105,9 +105,9 @@ namespace maker
         protected override void LoadContent()
         {
           // Load content belonging to the screen manager.
-          ContentManager content = Game.Content;
+          //ContentManager content = Game.Content;
           
-          spriteBatch = new SpriteBatch(Game.GraphicsDevice);
+          spriteBatch = ((MacGame)Game).spriteBatch;
           
           // Tell each of the screens to load their content.
           foreach (GameScreen screen in screens)

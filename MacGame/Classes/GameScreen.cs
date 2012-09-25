@@ -12,10 +12,6 @@ namespace maker
   //-----------------------------------------------------------------------------
 #endregion
   
-#region Using Statements
- 
-#endregion
-
     public enum ScreenState
     {
       TransitionOn,
