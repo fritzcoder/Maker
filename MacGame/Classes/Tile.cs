@@ -6,12 +6,22 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace maker
 {
-    public class Tile : Objekt
+    public class Tile : Objekt, ICloneable
     {
         public bool SolidTop { get; set; }
         public bool SolidBottom { get; set; }
         public bool SolidRight { get; set; }
         public bool SolidLeft { get; set; }
+
+        public Object Clone () {
+            Tile c = new Tile((Sprite)this._sprite.Clone(),
+                              this._spriteBatch,
+                              this._graphics,
+                              this._camera,
+                              this.Collidable);
+            return c;
+        }
+
 
         bool Solid{
             get{

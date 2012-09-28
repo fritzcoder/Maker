@@ -12,9 +12,11 @@ namespace maker {
 
         public Dictionary<string, Objekt> _objekts; 
         bool _jump;
+        public Tile selected_tile;
 
         public GamePlayScreen () : base() {
             _objekts = new Dictionary<string, Objekt>();
+
         }
 
         protected Objekt Collided(Objekt o)
@@ -32,20 +34,35 @@ namespace maker {
 
         public override void LoadContent () {
             MacGame _game = (MacGame)ScreenManager.Game;
-            _objekts.Add("bg1", new Objekt(new Sprite(_game.Content, "Background01"), 
+            _objekts.Add("bg1", new Objekt( 
                                            _game.spriteBatch, _game.graphics, _game.camera,false));
-            _objekts.Add("bg2", new Objekt(new Sprite(_game.Content, "Background02"), 
+            _objekts.Add("bg2", new Objekt(
                                            _game.spriteBatch, _game.graphics, _game.camera, false));
-            _objekts.Add("bg3", new Objekt(new Sprite(_game.Content, "Background03"),
+            _objekts.Add("bg3", new Objekt(
                                            _game.spriteBatch, _game.graphics, _game.camera, false));
-            _objekts.Add("bg4", new Objekt(new Sprite(_game.Content, "Background05"), 
+            _objekts.Add("bg4", new Objekt(
                                            _game.spriteBatch, _game.graphics, _game.camera, false));
-            
+
+            _objekts["bg1"].AddSprite("bg1", new Sprite(_game.Content, "Background01"));
+            _objekts["bg2"].AddSprite("bg2", new Sprite(_game.Content, "Background02"));
+            _objekts["bg3"].AddSprite("bg3", new Sprite(_game.Content, "Background03"));
+            _objekts["bg4"].AddSprite("bg4", new Sprite(_game.Content, "Background05"));
+
+            _objekts["bg1"].SelectedAction = "bg1";
+            _objekts["bg2"].SelectedAction = "bg2";
+            _objekts["bg3"].SelectedAction = "bg3";
+            _objekts["bg4"].SelectedAction = "bg4";
+
             _objekts["bg1"].Scale = 3.0f;
             _objekts["bg2"].Scale = 3.0f;
             _objekts["bg3"].Scale = 3.0f;
             _objekts["bg4"].Scale = 3.0f;
-            
+
+            _objekts["bg1"].Position = new Vector2(0,-100);
+            _objekts["bg2"].Position = new Vector2(_objekts["bg1"].Position.X + _objekts["bg1"].Size.Width, -100);
+            _objekts["bg3"].Position = new Vector2(_objekts["bg2"].Position.X + _objekts["bg2"].Size.Width, -100);
+            _objekts["bg4"].Position = new Vector2(_objekts["bg3"].Position.X + _objekts["bg3"].Size.Width, -100);
+
             for(int i = 0; i < 32; i++){
                 _objekts.Add("tile" + i.ToString(), 
                              new Tile(new Sprite(_game.Content, "Ground"),
@@ -71,22 +88,30 @@ namespace maker {
             }
             
             _objekts.Add("hero", 
-                         new Player(new Sprite(_game.Content, "maker_walk", 1, 4),
+                         new Player(
                        _game.spriteBatch,
                        _game.graphics,
                        _game.camera));
-            
+
+            _objekts["hero"].AddSprite("right",new Sprite(_game.Content, "maker_walk", 1, 4));
+            _objekts["hero"].AddSprite("left",new Sprite(_game.Content, "maker_walk_left", 1, 4));
+            _objekts["hero"].SelectedAction = "right";
             _objekts["hero"].Position = new Vector2(10, 100); 
-            _objekts["bg1"].Position = new Vector2(0,-100);
-            _objekts["bg2"].Position = new Vector2(_objekts["bg1"].Position.X + _objekts["bg1"].Size.Width, -100);
-            _objekts["bg3"].Position = new Vector2(_objekts["bg2"].Position.X + _objekts["bg2"].Size.Width, -100);
-            _objekts["bg4"].Position = new Vector2(_objekts["bg3"].Position.X + _objekts["bg3"].Size.Width, -100);
+
+
             
             _objekts.Add("mouse-pointer", 
-                         new Objekt(new Sprite(_game.Content, "mouse-pointer"), 
+                         new Objekt( 
                        _game.spriteBatch, _game.graphics, _game.camera, false));
-            
+            _objekts["mouse-pointer"].AddSprite("point", new Sprite(_game.Content, "mouse-pointer"));
+            _objekts["mouse-pointer"].SelectedAction = "point";
             _objekts["mouse-pointer"].Position = new Vector2(0,0);
+            Camera camera = ((MacGame)ScreenManager.Game).camera;
+
+            selected_tile = new Tile(new Sprite(ScreenManager.Game.Content, "Ground2"),
+                     ScreenManager.SpriteBatch,
+                     ((MacGame)ScreenManager.Game).graphics,
+                     camera, true);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
@@ -107,20 +132,14 @@ namespace maker {
 
                     if(!_objekts.ContainsKey("tileB" + x.ToString() + y.ToString()))
                     {
-                        Objekt newO = new Tile(new Sprite(ScreenManager.Game.Content, "Ground"),
-                                               ScreenManager.SpriteBatch,
-                                               ((MacGame)ScreenManager.Game).graphics,
-                                               camera, true);
+                        Objekt newO = (Tile)selected_tile.Clone();
                         
                         newO.Position = new Vector2(x,y);
                         
                         if(Collided(newO) == null)
                         {
                             _objekts.Add("tileB" + x.ToString() + y.ToString(), 
-                                        new Tile(new Sprite(ScreenManager.Game.Content, "Ground"),
-                                     ScreenManager.SpriteBatch,
-                                     ((MacGame)ScreenManager.Game).graphics,
-                                     camera, true));
+                                        newO);
                             
                             _objekts["tileB" + x.ToString() + 
                                     y.ToString()].Position = new Vector2(x,y);
@@ -133,15 +152,15 @@ namespace maker {
                     tileScreen.DialogueText = " ";
                     tileScreen.TitleText = "Maker";
                     tileScreen.BackText = "This is back text";
-                    ScreenManager.AddScreen(tileScreen);
+                    ScreenManager.AddScreen(tileScreen, "Tile");
                 }
 
-                if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Left)){
+                if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.A)){
                     player.playerStates["LEFT"] = true; 
                     player.playerStates["RIGHT"] = false; 
                 }
                 
-                if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Right)){
+                if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.D)){
                     player.playerStates["RIGHT"] = true; 
                     player.playerStates["LEFT"] = false;
                 }

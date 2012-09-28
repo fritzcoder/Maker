@@ -3,14 +3,6 @@ using Microsoft.Xna.Framework;
 
 namespace maker
 {
-  #region File Description
-  //-----------------------------------------------------------------------------
-  // GameScreen.cs
-  //
-  // Microsoft XNA Community Game Platform
-  // Copyright (C) Microsoft Corporation. All rights reserved.
-  //-----------------------------------------------------------------------------
-#endregion
   
     public enum ScreenState
     {
@@ -35,8 +27,7 @@ namespace maker
     public abstract class GameScreen
     {
       #region Properties
-      
-      
+     
       /// <summary>
       /// Normally when one screen is brought up over the top of another,
       /// the first screen will transition off to make room for the new
@@ -52,6 +43,7 @@ namespace maker
       
       bool isPopup = false;
       
+      public string Name { get; set; } 
       
       /// <summary>
       /// Indicates how long the screen takes to

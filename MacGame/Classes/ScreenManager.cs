@@ -9,47 +9,31 @@ using System.Text;
 
 namespace maker
 {
-    #region File Description
-    //-----------------------------------------------------------------------------
-    // ScreenManager.cs
-    //
-    // Microsoft XNA Community Game Platform
-    // Copyright (C) Microsoft Corporation. All rights reserved.
-    //-----------------------------------------------------------------------------
-    #endregion
-    
-    #region Using Statements
-   
-    #endregion
-
-      /// <summary>
-      /// The screen manager is a component which manages one or more GameScreen
-      /// instances. It maintains a stack of screens, calls their Update and Draw
-      /// methods at the appropriate times, and automatically routes input to the
-      /// topmost active screen.
-      /// </summary>
-      /// <remarks>
-      /// Similar to a class found in the Game State Management sample on the 
-      /// XNA Creators Club Online website (http://creators.xna.com).
-      /// </remarks>
-      public class ScreenManager : DrawableGameComponent
-      {
+    /// <summary>
+    /// The screen manager is a component which manages one or more GameScreen
+    /// instances. It maintains a stack of screens, calls their Update and Draw
+    /// methods at the appropriate times, and automatically routes input to the
+    /// topmost active screen.
+    /// </summary>
+    /// <remarks>
+    /// Similar to a class found in the Game State Management sample on the 
+    /// XNA Creators Club Online website (http://creators.xna.com).
+    /// </remarks>
+    public class ScreenManager : DrawableGameComponent
+    {
         #region Fields
-        
-        List<GameScreen> screens = new List<GameScreen>();
+        Dictionary<string, GameScreen> screens = new Dictionary<string, GameScreen>();
+        //List<GameScreen> screens = new List<GameScreen>();
         List<GameScreen> screensToUpdate = new List<GameScreen>();
         
         SpriteBatch spriteBatch;
         
         bool isInitialized;
         bool traceEnabled;
-        
         #endregion
         
         
         #region Properties
-        
-        
         /// <summary>
         /// A default SpriteBatch shared by all the screens. This saves
         /// each screen having to bother creating their own local instance.
@@ -58,8 +42,7 @@ namespace maker
         {
           get { return spriteBatch; }
         }
-        
-        
+
         /// <summary>
         /// If true, the manager prints out a list of all the screens
         /// each time it is updated. This can be useful for making sure
@@ -70,14 +53,11 @@ namespace maker
           get { return traceEnabled; }
           set { traceEnabled = value; }
         }
-        
-        
-#endregion
+        #endregion
         
         
         #region Initialization
-        
-        
+
         /// <summary>
         /// Constructs a new screen manager component.
         /// </summary>
@@ -100,20 +80,24 @@ namespace maker
         
         
         /// <summary>
-        /// Load your graphics content.
-        /// </summary>
+    /// Load your graphics content.
+    /// </summary>
         protected override void LoadContent()
         {
-          // Load content belonging to the screen manager.
+            // Load content belonging to the screen manager.
           //ContentManager content = Game.Content;
           
-          spriteBatch = ((MacGame)Game).spriteBatch;
-          
-          // Tell each of the screens to load their content.
-          foreach (GameScreen screen in screens)
-          {
-            screen.LoadContent();
-          }
+            spriteBatch = ((MacGame)Game).spriteBatch;
+
+            foreach(KeyValuePair<string, GameScreen> screen in screens){
+                screen.Value.LoadContent();
+            }
+
+            // Tell each of the screens to load their content.
+            //foreach (GameScreen screen in screens)
+            //{
+              //  screen.LoadContent();
+            //}
         }
         
         
@@ -122,68 +106,74 @@ namespace maker
         /// </summary>
         protected override void UnloadContent()
         {
+            foreach(KeyValuePair<string, GameScreen> screen in screens){
+                screen.Value.UnloadContent();
+            }
           // Tell each of the screens to unload their content.
-          foreach (GameScreen screen in screens)
-          {
-            screen.UnloadContent();
-          }
+          //foreach (GameScreen screen in screens)
+          //{
+            //screen.UnloadContent();
+          //}
         }
         
         
        #endregion
         
         
-        #region Update and Draw
+       #region Update and Draw
         
         
-        /// <summary>
+       /// <summary>
         /// Allows each screen to run logic.
         /// </summary>
         public override void Update(GameTime gameTime)
         {
-          // Make a copy of the master screen list, to avoid confusion if
-          // the process of updating one screen adds or removes others.
-          screensToUpdate.Clear();
-          
-          foreach (GameScreen screen in screens)
-            screensToUpdate.Add(screen);
-          
-          bool otherScreenHasFocus = !Game.IsActive;
-          bool coveredByOtherScreen = false;
-          
-          // Loop as long as there are screens waiting to be updated.
-          while (screensToUpdate.Count > 0)
-          {
-            // Pop the topmost screen off the waiting list.
-            GameScreen screen = screensToUpdate[screensToUpdate.Count - 1];
-            
-            screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
-            
-            // Update the screen.
-            screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-            
-            if (screen.ScreenState == ScreenState.TransitionOn ||
-                screen.ScreenState == ScreenState.Active)
-            {
-              // If this is the first active screen we came across,
-              // give it a chance to handle input.
-              if (!otherScreenHasFocus)
-              {
-                screen.HandleInput();
-                
-                otherScreenHasFocus = true;
-              }
-              
-              // If this is an active non-popup, inform any subsequent
-              // screens that they are covered by it.
-              if (!screen.IsPopup)
-                coveredByOtherScreen = true;
+            // Make a copy of the master screen list, to avoid confusion if
+            // the process of updating one screen adds or removes others.
+            screensToUpdate.Clear();
+
+            foreach(KeyValuePair<string, GameScreen> screen in screens){
+                screensToUpdate.Add(screen.Value);
             }
-          }
+
+            //foreach (GameScreen screen in screens)
+            //    screensToUpdate.Add(screen);
+
+            bool otherScreenHasFocus = !Game.IsActive;
+            bool coveredByOtherScreen = false;
           
-          // Print debug trace?
-          if (traceEnabled)
-            TraceScreens();
+                // Loop as long as there are screens waiting to be updated.
+            while (screensToUpdate.Count > 0)
+            {
+                // Pop the topmost screen off the waiting list.
+                GameScreen screen = screensToUpdate[screensToUpdate.Count - 1];
+            
+                screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
+            
+                // Update the screen.
+                screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            
+                if (screen.ScreenState == ScreenState.TransitionOn ||
+                    screen.ScreenState == ScreenState.Active)
+                {
+                    // If this is the first active screen we came across,
+              // give it a chance to handle input.
+                    if (!otherScreenHasFocus)
+                    {
+                        screen.HandleInput();
+                        otherScreenHasFocus = true;
+                    }
+              
+                    // If this is an active non-popup, inform any subsequent
+              // screens that they are covered by it.
+                    if (!screen.IsPopup)
+                        coveredByOtherScreen = true;
+                }   
+            }
+          
+            // Print debug trace?
+            if (traceEnabled)
+                TraceScreens();
         }
         
         
@@ -192,14 +182,18 @@ namespace maker
         /// </summary>
         void TraceScreens()
         {
-          List<string> screenNames = new List<string>();
+            List<string> screenNames = new List<string>();
           
-          foreach (GameScreen screen in screens)
-            screenNames.Add(screen.GetType().Name);
+            foreach(KeyValuePair<string, GameScreen> screen in screens){
+                screenNames.Add(screen.Value.GetType().Name);
+            }
+
+            //foreach (GameScreen screen in screens)
+            //    screenNames.Add(screen.GetType().Name);
           
-#if WINDOWS
-          Trace.WriteLine(string.Join(", ", screenNames.ToArray()));
-#endif
+            #if WINDOWS
+                Trace.WriteLine(string.Join(", ", screenNames.ToArray()));
+            #endif
         }
         
         
@@ -208,17 +202,23 @@ namespace maker
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-          foreach (GameScreen screen in screens)
-          {
-            if (screen.ScreenState == ScreenState.Hidden)
-              continue;
-            
-            screen.Draw(gameTime);
-          }
+            foreach(KeyValuePair<string, GameScreen> screen in screens){
+                if (screen.Value.ScreenState == ScreenState.Hidden)
+                    continue;
+                
+                screen.Value.Draw(gameTime);
+            }
+
+//            foreach (GameScreen screen in screens)
+//            {
+//                if (screen.ScreenState == ScreenState.Hidden)
+//                    continue;
+//            
+//                screen.Draw(gameTime);
+//            }
         }
-        
-        
-#endregion
+     
+        #endregion
         
         
         #region Public Methods
@@ -227,18 +227,20 @@ namespace maker
         /// <summary>
         /// Adds a new screen to the screen manager.
         /// </summary>
-        public void AddScreen(GameScreen screen)
+        public void AddScreen(GameScreen screen, string name)
         {
-          screen.ScreenManager = this;
-          screen.IsExiting = false;
+            screen.ScreenManager = this;
+            screen.IsExiting = false;
+            screen.Name = name;
           
-          // If we have a graphics device, tell the screen to load content.
-          if (isInitialized)
-          {
-            screen.LoadContent();
-          }
+            // If we have a graphics device, tell the screen to load content.
+            if (isInitialized)
+            {
+                screen.LoadContent();
+            }
           
-          screens.Add(screen);
+            screens.Add(screen.Name, screen);
+          //screens.Add(screen);
         }
         
         
@@ -251,13 +253,13 @@ namespace maker
         public void RemoveScreen(GameScreen screen)
         {
           // If we have a graphics device, tell the screen to unload content.
-          if (isInitialized)
-          {
-            screen.UnloadContent();
-          }
+            if (isInitialized)
+            { 
+                screen.UnloadContent();
+            }
           
-          screens.Remove(screen);
-          screensToUpdate.Remove(screen);
+            screens.Remove(screen.Name);;
+            screensToUpdate.Remove(screen);
         }
         
         
@@ -266,12 +268,11 @@ namespace maker
         /// than the real master list, because screens should only ever be added
         /// or removed using the AddScreen and RemoveScreen methods.
         /// </summary>
-        public GameScreen[] GetScreens()
-        {
-          return screens.ToArray();
-        }
-        
-        
-#endregion
-      }
+        //public GameScreen[] GetScreens()
+        //{
+          //return screens;
+        //}
+      
+        #endregion
+    }
 }

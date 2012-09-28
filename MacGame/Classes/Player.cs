@@ -15,13 +15,13 @@ namespace maker
     private int jumpCounter;
     private int jumpSpeed = 10;
 
-    public Player (Sprite sprite, 
+    public Player ( 
                    SpriteBatch spriteBatch,
                    GraphicsDeviceManager graphics,
                    Camera camera)
     {
       playerStates = new Dictionary<string, bool>();
-      _sprite = sprite;
+      _sprites = new Dictionary<string, Sprite>();
       _spriteBatch = spriteBatch;
       _graphics = graphics;
       _camera = camera;
@@ -37,21 +37,23 @@ namespace maker
       playerStates.Add("FALL", false);
       playerStates.Add("DEAD", false);
 
-      this.Position = new Vector2(this.Position.X - Speed, this.Position.Y);
+      //this.Position = new Vector2(this.Position.X - Speed, this.Position.Y);
     }
 
     private void MoveRight()
     {
       this.Position = new Vector2(this.Position.X + Speed, this.Position.Y);
       playerStates["RIGHT"] = false;
+            this.SelectedAction = "right";
       this.Update();
     }
 
     private void MoveLeft()
     {
-      this.Position = new Vector2(this.Position.X - Speed, this.Position.Y);
-      playerStates["LEFT"] = false;
-      this.Update();
+        this.Position = new Vector2(this.Position.X - Speed, this.Position.Y);
+        this.SelectedAction = "left";
+        playerStates["LEFT"] = false;
+        this.Update();
     }
 
     private void Jump()

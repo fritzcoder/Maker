@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,18 +11,32 @@ namespace maker
     public class Objekt
     {
         protected Sprite _sprite;
+        //_sprites will be used to match a sprite or sprite sheet 
+        //to actions. 
+
+        //We can have sprite sheet for walking left and right 
+        //We can add it to the dictionary
+        //AddSprite("left", sprite_for_walking_left)
+        //AddSprite("right", sprite_for_walking_right)
+        //Then be able to select which one is going to be rendered
+        //objekt.SelectedAction = "left";
+        //This will render the left action;
+
+        protected Dictionary<string, Sprite> _sprites;
         protected SpriteBatch _spriteBatch;
         protected GraphicsDeviceManager _graphics;
         protected Camera _camera;
+        protected Vector2 _position;
         public bool Collidable { set; get; }
 
         public Vector2 Position{
             get{
-                return _sprite.Position;
+                return _position;
             }
 
             set{
-                _sprite.Position = value;
+                _sprite.Position = Position;
+                _position = value;
             }
         }
     
@@ -55,12 +70,12 @@ namespace maker
             }
         }
 
-        public Objekt(Sprite sprite, 
+        public Objekt(
                   SpriteBatch spriteBatch,
                   GraphicsDeviceManager graphics,
                   Camera camera,
                   bool collidable){
-            _sprite = sprite;
+            _sprites = new Dictionary<string, Sprite>();
             _spriteBatch = spriteBatch;
             _graphics = graphics;
             _camera = camera;
@@ -69,11 +84,31 @@ namespace maker
 
         public Objekt() { }
 
+        private string _selectedAction; 
+        public string SelectedAction {
+            get {
+                return _selectedAction;
+            }
+            set {
+                _sprite = _sprites[value];
+                _sprite.Position = _position;
+                _selectedAction = value;
+            }
+        }
+
+        public void AddSprite (string actionName, Sprite sprite) {
+
+            _sprites.Add(actionName, sprite);
+
+        }
+
         public void Update(){
+            //_sprite.Position = _position;
             _sprite.update();
         }
 
         public void Draw(){
+            _sprite.Position = _position;
             _sprite.Draw(_spriteBatch,_camera.Position);
         }
 
@@ -82,5 +117,6 @@ namespace maker
                               _graphics.GraphicsDevice.DisplayMode.Height,
                               _camera.Position);
         }
+
     }
 }

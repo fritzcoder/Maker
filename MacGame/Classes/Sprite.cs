@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace maker
 {
-    public class Sprite
+    public class Sprite : ICloneable 
     {
 	    public Vector2 Position { get; set; }
 		public Texture2D Texture { get; set; }
@@ -63,6 +63,10 @@ namespace maker
             _height = Texture.Height / Rows;
             WorldPosition = worldPosition;
             //ColorData = new Color[_width, _height];
+        }
+
+        public Object Clone () {
+            return this.MemberwiseClone();
         }
 
 		public virtual void Draw(SpriteBatch spriteBatch, Vector2 camera){

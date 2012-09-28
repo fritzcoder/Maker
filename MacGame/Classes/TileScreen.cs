@@ -260,11 +260,13 @@ namespace maker {
             tiles["Ground2"].Position = new Vector2(backgroundPosition.X + 60, 
                                                    backgroundPosition.Y + 100);
 
-            mouse = new Objekt(new Sprite(content, "mouse-pointer"), 
+            mouse = new Objekt( 
                                ScreenManager.SpriteBatch,
                                ((MacGame)ScreenManager.Game).graphics,
                                ((MacGame)ScreenManager.Game).camera, true);
-            
+
+            mouse.AddSprite("point",new Sprite(content, "mouse-pointer"));
+            mouse.SelectedAction = "point";
             mouse.Position = new Vector2(0,0);
 
 
@@ -274,16 +276,33 @@ namespace maker {
 
         }
         #endregion
-        
+
         
         #region Updating
-
+        protected Objekt Collided(Objekt o)
+        {
+            foreach(KeyValuePair<string, Tile> kvp in tiles){
+                if(kvp.Value.InScreen() && !kvp.Value.Equals(o) && kvp.Value.Collidable){
+                    if(Utility.BoundingCollision(o, kvp.Value)){
+                        return (Objekt)kvp.Value;
+                    }
+                }
+            }
+            return null;
+        }
         
         /// <summary>
         /// Handles user input to the dialog.
         /// </summary>
-        public override void HandleInput()
-        {
+        public override void HandleInput () {
+
+            if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
+                if(Collided(mouse) != null)
+                {
+                    //this.
+                }
+            }
+
             if(InputManager.CurrentKeyboardState.IsKeyDown(Keys.Escape))
             {
                 if(this.IsActive)
@@ -293,32 +312,7 @@ namespace maker {
               
                 return;
             }
-            // Press Select or Bback
-            if (InputManager.IsActionTriggered(InputManager.Action.Ok) ||
-                InputManager.IsActionTriggered(InputManager.Action.Back))
-            {
-                ExitScreen();
-                return;
-            }
-            
-            // Scroll up
-            if (InputManager.IsActionTriggered(InputManager.Action.CursorUp))
-            {
-                if (startIndex > 0)
-                {
-                    startIndex--;
-                    endIndex--;
-                }
-            }
-            // Scroll down
-            else if (InputManager.IsActionTriggered(InputManager.Action.CursorDown))
-            {
-                if (startIndex < dialogueList.Count - drawMaxLines)
-                {
-                    endIndex++;
-                    startIndex++;
-                }
-            }
+
         }
         
         
@@ -347,46 +341,12 @@ namespace maker {
             // draw popup background
             spriteBatch.Draw(backgroundTexture, backgroundPosition, Color.White);
             
-            // draw the top line
-            //spriteBatch.Draw(lineTexture, topLinePosition, Color.White);
-            
-            // draw the bottom line
-            //spriteBatch.Draw(lineTexture, bottomLinePosition, Color.White);
-            
-            // draw scrollbar
-            //spriteBatch.Draw(scrollTexture, scrollPosition, Color.White);
-            
-            // draw title
+           
+
             spriteBatch.DrawString(Fonts.HeaderFont, titleText, titlePosition,
                                    Fonts.CountColor);
             
-            // draw the dialogue
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                spriteBatch.DrawString(Fonts.DescriptionFont, dialogueList[i],
-                                       textPosition, Fonts.CountColor);
-                textPosition.Y += Fonts.DescriptionFont.LineSpacing;
-            }
-            
-            // draw the Back button and adjoining text
-//            if (!String.IsNullOrEmpty(backText))
-//            {
-//                spriteBatch.DrawString(Fonts.ButtonNamesFont, backText, backPosition,
-//                                       Color.White);
-//                spriteBatch.Draw(backButtonTexture, backButtonPosition, Color.White);
-//            }
-            
-            // draw the Select button and adjoining text
-//            if (!String.IsNullOrEmpty(selectText))
-//            {
-//                selectPosition.X = selectButtonPosition.X -
-//                    Fonts.ButtonNamesFont.MeasureString(selectText).X - 10f;
-//                selectPosition.Y = selectButtonPosition.Y;
-//                spriteBatch.DrawString(Fonts.ButtonNamesFont, selectText, selectPosition,
-//                                       Color.White);
-//                spriteBatch.Draw(selectButtonTexture, selectButtonPosition, Color.White);
-//            }
-
+          
             tiles["Ground"].Draw();
             tiles["Ground2"].Draw();
             mouse.Draw();
