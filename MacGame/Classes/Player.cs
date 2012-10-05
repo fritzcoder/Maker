@@ -25,8 +25,8 @@ namespace maker
       _spriteBatch = spriteBatch;
       _graphics = graphics;
       _camera = camera;
-      Speed = 5;
-      JumpHeight = 15;
+      Speed = 10;
+      JumpHeight = 14;
 
       playerStates.Add("UP", false);
       playerStates.Add("DOWN", false);

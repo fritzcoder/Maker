@@ -13,30 +13,10 @@ namespace maker {
         private Dictionary<string, Tile> tiles; 
         private Texture2D backgroundTexture;
         private Vector2 backgroundPosition;
-        private Texture2D fadeTexture;
-        
-        private Texture2D selectButtonTexture;
-        private Vector2 selectPosition;
-        private Vector2 selectButtonPosition;
-        
-        private Vector2 backPosition;
-        private Texture2D backButtonTexture;
-        private Vector2 backButtonPosition;
-        
-        private Texture2D scrollTexture;
-        private Vector2 scrollPosition;
-        
-        private Texture2D lineTexture;
-        private Vector2 topLinePosition;
-        private Vector2 bottomLinePosition;
-        
         private Vector2 titlePosition;
-        private Vector2 dialogueStartPosition;
-
         private Objekt mouse; 
-        
-        
-#endregion
+
+        #endregion
         
         
         #region Text Data
@@ -55,134 +35,6 @@ namespace maker {
             get { return titleText; }
             set { titleText = value; }
         }
-        
-        
-        /// <summary>
-        /// The dialogue shown in the main portion of this dialog.
-        /// </summary>
-        private string dialogueText;
-        
-        /// <summary>
-        /// The dialogue shown in the main portion of this dialog, broken into lines.
-        /// </summary>
-        private List<string> dialogueList = new List<string>();
-        
-        /// <summary>
-        /// The dialogue shown in the main portion of this dialog.
-        /// </summary>
-        public string DialogueText
-        {
-            get { return dialogueText; }
-            set
-            {
-                // trim the new value
-                string trimmedValue = value.Trim();
-                // if it's a match for what we already have, then this is trivial
-                if (dialogueText == trimmedValue)
-                {
-                    return;
-                }
-                // assign the new value
-                dialogueText = trimmedValue;
-                // break the text into lines
-                if (String.IsNullOrEmpty(dialogueText))
-                {
-                    dialogueList.Clear();
-                }
-                else
-                {
-                    dialogueList = Fonts.BreakTextIntoList(dialogueText, 
-                                                           Fonts.DescriptionFont, maxWidth);
-                }
-                // set which lines ar edrawn
-                startIndex = 0;
-                endIndex = drawMaxLines;
-                if (endIndex > dialogueList.Count)
-                {
-                    dialogueStartPosition = new Vector2(271f,
-                                                        375f - ((dialogueList.Count - startIndex) *
-                            (Fonts.DescriptionFont.LineSpacing) / 2));
-                    endIndex = dialogueList.Count;
-                }
-                else
-                {
-                    dialogueStartPosition = new Vector2(271f, 225f);
-                }
-            }
-        }
-        
-        
-        /// <summary>
-        /// The text shown next to the A button, if any.
-        /// </summary>
-        private string selectText = "Continue";
-        
-        /// <summary>
-        /// The text shown next to the A button, if any.
-        /// </summary>
-        public string SelectText
-        {
-            get { return selectText; }
-            set 
-            {
-                if (selectText != value)
-                {
-                    selectText = value;
-                    if (selectButtonTexture != null)
-                    {
-                        selectPosition.X = selectButtonPosition.X -
-                            Fonts.ButtonNamesFont.MeasureString(selectText).X - 10f;
-                        selectPosition.Y = selectButtonPosition.Y;
-                    }
-                }
-            }
-        }
-        
-        
-        /// <summary>
-        /// The text shown next to the B button, if any.
-        /// </summary>
-        private string backText = "Back";
-        
-        /// <summary>
-        /// The text shown next to the B button, if any.
-        /// </summary>
-        public string BackText
-        {
-            get { return backText; }
-            set { backText = value; }
-        }
-        
-        
-        /// <summary>
-        /// Maximum width of each line in pixels
-        /// </summary>
-        private const int maxWidth = 705;
-        
-        
-        /// <summary>
-        /// Starting index of the list to be displayed
-        /// </summary>
-        private int startIndex = 0;
-        
-        
-        /// <summary>
-        /// Ending index of the list to be displayed
-        /// </summary>
-        private int endIndex = drawMaxLines;
-        
-        
-        /// <summary>
-        /// Maximum number of lines to draw in the screen
-        /// </summary>
-        private const int drawMaxLines = 13;
-        
-        
-#endregion
-        
-        
-        #region Initialization
-        
         
         /// <summary>
         /// Construct a new DialogueScreen object.
@@ -205,43 +57,14 @@ namespace maker {
             ContentManager content = ScreenManager.Game.Content;
             tiles = new Dictionary<string, Tile>();
 
-
-            fadeTexture =
-                content.Load<Texture2D>(@"Textures\GameScreens\FadeScreen");
             backgroundTexture =
                 content.Load<Texture2D>(@"Textures\GameScreens\PopupScreen");
-            scrollTexture =
-                content.Load<Texture2D>(@"Textures\GameScreens\ScrollButtons");
-            selectButtonTexture = content.Load<Texture2D>(@"Textures\Buttons\AButton");
-            backButtonTexture = content.Load<Texture2D>(@"Textures\Buttons\BButton");
-            lineTexture =
-                content.Load<Texture2D>(@"Textures\GameScreens\SeparationLine");
-            
+           
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             
             backgroundPosition.X = (viewport.Width - backgroundTexture.Width) / 2;
             backgroundPosition.Y = (viewport.Height - backgroundTexture.Height) / 2;
-            
-            
-            selectButtonPosition.X = viewport.Width / 2 + 260;
-            selectButtonPosition.Y = backgroundPosition.Y + 530f;
-            selectPosition.X = selectButtonPosition.X -
-                Fonts.ButtonNamesFont.MeasureString(selectText).X - 10f;
-            selectPosition.Y = selectButtonPosition.Y;
-            
-            backPosition.X = viewport.Width / 2 - 250f;
-            backPosition.Y = backgroundPosition.Y + 530f;
-            backButtonPosition.X = backPosition.X - backButtonTexture.Width - 10;
-            backButtonPosition.Y = backPosition.Y;
-            
-            scrollPosition = backgroundPosition + new Vector2(820f, 200f);
-            
-            topLinePosition.X = (viewport.Width - lineTexture.Width) / 2 - 30f;
-            topLinePosition.Y = 200f;
-            
-            bottomLinePosition.X = topLinePosition.X;
-            bottomLinePosition.Y = 550f;
-            
+
             titlePosition.X = (viewport.Width -
                                Fonts.HeaderFont.MeasureString(titleText).X) / 2;
             titlePosition.Y = backgroundPosition.Y + 70f;
@@ -265,11 +88,9 @@ namespace maker {
                                ((MacGame)ScreenManager.Game).graphics,
                                ((MacGame)ScreenManager.Game).camera, true);
 
-            mouse.AddSprite("point",new Sprite(content, "mouse-pointer"));
+            mouse.AddSprite("point",new Sprite(content, "mouse-pointer",false));
             mouse.SelectedAction = "point";
             mouse.Position = new Vector2(0,0);
-
-
         }
         
         public override void UnloadContent () {
@@ -297,9 +118,11 @@ namespace maker {
         public override void HandleInput () {
 
             if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
-                if(Collided(mouse) != null)
+                Tile selected = (Tile)Collided(mouse);
+                if(selected != null)
                 {
-                    //this.
+                    ((GamePlayScreen)ScreenManager.screens["GamePlay"]).selected_tile = 
+                        (Tile)selected.Clone(); 
                 }
             }
 
@@ -327,9 +150,6 @@ namespace maker {
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            Vector2 textPosition = dialogueStartPosition;
-             
-
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin();
 

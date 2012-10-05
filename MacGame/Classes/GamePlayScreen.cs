@@ -19,16 +19,21 @@ namespace maker {
 
         }
 
-        protected Objekt Collided(Objekt o)
+        protected List<Collision> Collided(Objekt o)
         {
+            List<Collision> collisions = new List<Collision>();
+
             foreach(KeyValuePair<string, Objekt> kvp in _objekts){
                 if(kvp.Value.InScreen() && !kvp.Value.Equals(o) && kvp.Value.Collidable){
-                    if(Utility.BoundingCollision(o, kvp.Value)){
-                        return kvp.Value;
+                    Collision col = Collision.Collided(o, kvp.Value);
+   
+                    if(col != null){
+                        collisions.Add(col);
                     }
                 }
             }
-            return null;
+
+            return collisions;
         }
 
 
@@ -122,10 +127,8 @@ namespace maker {
             if (IsActive && !coveredByOtherScreen)
             {
                 Camera camera = ((MacGame)ScreenManager.Game).camera;
-
                 Player player = ((Player)_objekts["hero"]);
-                // For Mobile devices, this logic will close the Game when the Back button is pressed
-                
+               
                 if(Mouse.GetState().LeftButton == ButtonState.Pressed){
                     int x = Mouse.GetState().X + (int)camera.Position.X;
                     int y = Mouse.GetState().Y + (int)camera.Position.Y;
@@ -135,23 +138,19 @@ namespace maker {
                         Objekt newO = (Tile)selected_tile.Clone();
                         
                         newO.Position = new Vector2(x,y);
+                        newO.WorldPosition = true;
                         
-                        if(Collided(newO) == null)
+                        if(Collided(newO).Count == 0)
                         {
                             _objekts.Add("tileB" + x.ToString() + y.ToString(), 
                                         newO);
-                            
-                            _objekts["tileB" + x.ToString() + 
-                                    y.ToString()].Position = new Vector2(x,y);
                         }
                     }
                 }
-                
+               
                 if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Tab)){
                     TileScreen tileScreen = new TileScreen();
-                    tileScreen.DialogueText = " ";
                     tileScreen.TitleText = "Maker";
-                    tileScreen.BackText = "This is back text";
                     ScreenManager.AddScreen(tileScreen, "Tile");
                 }
 
@@ -184,9 +183,30 @@ namespace maker {
                         _jump = false;
                     }
                 }
-                
-                if(Collided (player) != null){
-                    player.playerStates["FALL"] = false;
+
+
+                List<Collision> collisions = Collided(player);
+                if(collisions.Count > 0){
+                    foreach(Collision col in collisions)
+                    {
+                        if(col.Side == CollisionSide.Bottom)
+                        {
+                            player.playerStates["FALL"] = false;
+                        }
+                        if(col.Side == CollisionSide.Right)
+                        {
+                            player.playerStates["RIGHT"] = false;
+                        }
+                        if(col.Side == CollisionSide.Left)
+                        {
+                            player.playerStates["LEFT"] = false;
+                        }
+                        if(col.Side == CollisionSide.Top)
+                        {
+                            player.playerStates["FALL"] = true;
+                            //player.playerStates["JUMP"] = false;
+                        }
+                    }
                     //System.Console.WriteLine("Collided:" + kvp.Key);
                 }
                 else{
@@ -207,9 +227,7 @@ namespace maker {
                 
                 // TODO: Add your update logic here 
                 //screenManager.Update(gameTime);
-
-
-
+               
                 //Session.Update(gameTime);
             }
         }

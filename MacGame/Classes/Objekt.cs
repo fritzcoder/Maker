@@ -25,9 +25,36 @@ namespace maker
         protected Dictionary<string, Sprite> _sprites;
         protected SpriteBatch _spriteBatch;
         protected GraphicsDeviceManager _graphics;
+        public Rectangle _top; 
+        public Rectangle _bottom;
+        public Rectangle _left;
+        public Rectangle _right;
         protected Camera _camera;
         protected Vector2 _position;
+
         public bool Collidable { set; get; }
+
+
+        public Rectangle Top {
+            get {
+               return _top;
+            }
+        }
+
+        public Rectangle Bottom {
+            get {
+                return _bottom;
+            }
+        }
+
+        public bool WorldPosition { 
+            get {
+                return _sprite.WorldPosition;
+            }
+            set {
+                _sprite.WorldPosition = value;
+            }
+        }
 
         public Vector2 Position{
             get{
@@ -35,8 +62,8 @@ namespace maker
             }
 
             set{
-                _sprite.Position = Position;
                 _position = value;
+                _sprite.Position = Position;
             }
         }
     
@@ -75,6 +102,11 @@ namespace maker
                   GraphicsDeviceManager graphics,
                   Camera camera,
                   bool collidable){
+            _top = new Rectangle();
+            _bottom = new Rectangle();
+            _right = new Rectangle();
+            _left = new Rectangle();
+           
             _sprites = new Dictionary<string, Sprite>();
             _spriteBatch = spriteBatch;
             _graphics = graphics;
@@ -93,6 +125,11 @@ namespace maker
                 _sprite = _sprites[value];
                 _sprite.Position = _position;
                 _selectedAction = value;
+                _bottom.Width = _top.Width = _sprite.Bounds.Width/2;
+                _top.Height = 10+5;
+                _bottom.Height = 10+5;
+                _right.Width = _left.Width = _sprite.Bounds.Width/2;
+                _right.Height = _left.Height = _sprite.Bounds.Height-_top.Height-_bottom.Height;
             }
         }
 

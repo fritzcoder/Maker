@@ -76,6 +76,7 @@
     <Compile Include="Classes\InputManager.cs" />
     <Compile Include="Classes\TileScreen.cs" />
     <Compile Include="Classes\GamePlayScreen.cs" />
+    <Compile Include="Classes\Collision.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />

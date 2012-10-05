@@ -22,7 +22,7 @@ namespace maker
     public class ScreenManager : DrawableGameComponent
     {
         #region Fields
-        Dictionary<string, GameScreen> screens = new Dictionary<string, GameScreen>();
+        public Dictionary<string, GameScreen> screens = new Dictionary<string, GameScreen>();
         //List<GameScreen> screens = new List<GameScreen>();
         List<GameScreen> screensToUpdate = new List<GameScreen>();
         

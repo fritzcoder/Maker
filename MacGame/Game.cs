@@ -34,7 +34,7 @@ namespace maker
             spriteBatch = new SpriteBatch (GraphicsDevice);
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
-            screenManager.AddScreen(new GamePlayScreen(), "GamePLay");
+            screenManager.AddScreen(new GamePlayScreen(), "GamePlay");
         }
 
         //protected override void Draw(GameTime gameTime) {
