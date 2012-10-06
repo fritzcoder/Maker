@@ -34,16 +34,35 @@ namespace maker
 
         public bool Collidable { set; get; }
 
-
         public Rectangle Top {
             get {
+                _top.X = _sprite.Bounds.X + _sprite.Bounds.Width/4;
+                _top.Y = _sprite.Bounds.Y;
                return _top;
             }
         }
 
         public Rectangle Bottom {
             get {
+                _bottom.X = _sprite.Bounds.X + _sprite.Bounds.Width/4;
+                _bottom.Y = _sprite.Bounds.Y+_sprite.Bounds.Height-_bottom.Height;
                 return _bottom;
+            }
+        }
+
+        public Rectangle Left {
+            get {
+                _left.X = _sprite.Bounds.X;
+                _left.Y = _sprite.Bounds.Y+Top.Height;
+                return _left;
+            }
+        }
+
+        public Rectangle Right {
+            get {
+                _right.X = _sprite.Bounds.X+Left.Width;
+                _right.Y = Top.Y+Top.Height;
+                return _right;
             }
         }
 
@@ -106,6 +125,7 @@ namespace maker
             _bottom = new Rectangle();
             _right = new Rectangle();
             _left = new Rectangle();
+
            
             _sprites = new Dictionary<string, Sprite>();
             _spriteBatch = spriteBatch;
@@ -143,13 +163,21 @@ namespace maker
             //_sprite.Position = _position;
             _sprite.update();
         }
-
+       
         public void Draw(){
+           
             _sprite.Position = _position;
             _sprite.Draw(_spriteBatch,_camera.Position);
+
         }
 
         public bool InScreen(){
+            _bottom.Width = _top.Width = _sprite.Bounds.Width/2;
+            _top.Height = 10+5;
+            _bottom.Height = 10+5;
+            _right.Width = _left.Width = _sprite.Bounds.Width/2;
+            _right.Height = _left.Height = _sprite.Bounds.Height-_top.Height-_bottom.Height;
+
             return _sprite.InScreen(_graphics.GraphicsDevice.DisplayMode.Width,
                               _graphics.GraphicsDevice.DisplayMode.Height,
                               _camera.Position);

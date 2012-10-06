@@ -13,6 +13,7 @@ namespace maker {
         public Dictionary<string, Objekt> _objekts; 
         bool _jump;
         public Tile selected_tile;
+        Texture2D pixel;
 
         public GamePlayScreen () : base() {
             _objekts = new Dictionary<string, Objekt>();
@@ -39,6 +40,10 @@ namespace maker {
 
         public override void LoadContent () {
             MacGame _game = (MacGame)ScreenManager.Game;
+            pixel = new Texture2D(_game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+            pixel.SetData(new[] { Color.White }); // so that we can draw whatever color we want on top of it
+
             _objekts.Add("bg1", new Objekt( 
                                            _game.spriteBatch, _game.graphics, _game.camera,false));
             _objekts.Add("bg2", new Objekt(
@@ -233,20 +238,72 @@ namespace maker {
         }
 
 
+        private void DrawBorder(SpriteBatch spriteBatch, Rectangle rectangleToDraw, int thicknessOfBorder, Color borderColor)
+        {
+            // Draw top line
+            spriteBatch.Draw(pixel, new Rectangle(rectangleToDraw.X, rectangleToDraw.Y, rectangleToDraw.Width, thicknessOfBorder), borderColor);
+            
+            // Draw left line
+            spriteBatch.Draw(pixel, new Rectangle(rectangleToDraw.X, rectangleToDraw.Y, thicknessOfBorder, rectangleToDraw.Height), borderColor);
+            
+            // Draw right line
+            spriteBatch.Draw(pixel, new Rectangle((rectangleToDraw.X + rectangleToDraw.Width - thicknessOfBorder),
+                                                  rectangleToDraw.Y,
+                                                  thicknessOfBorder,
+                                                  rectangleToDraw.Height), borderColor);
+            // Draw bottom line
+            spriteBatch.Draw(pixel, new Rectangle(rectangleToDraw.X,
+                                                  rectangleToDraw.Y + rectangleToDraw.Height - thicknessOfBorder,
+                                                  rectangleToDraw.Width,
+                                                  thicknessOfBorder), borderColor);
+        }
+
+        private void DrawBorder2(SpriteBatch spriteBatch, Rectangle rectangleToDraw, int thicknessOfBorder, Color borderColor)
+        {
+            Camera camera = ((MacGame)ScreenManager.Game).camera;
+            // Draw top line
+            spriteBatch.Draw(pixel, new Rectangle(rectangleToDraw.X - (int)camera.Position.X, 
+                                                  rectangleToDraw.Y - (int)camera.Position.Y, 
+                                                  rectangleToDraw.Width, thicknessOfBorder), borderColor);
+
+            // Draw left line
+            spriteBatch.Draw(pixel, new Rectangle(rectangleToDraw.X - (int)camera.Position.X, 
+                                                  rectangleToDraw.Y - (int)camera.Position.Y, 
+                                                  thicknessOfBorder, rectangleToDraw.Height), borderColor);
+            
+            // Draw right line
+            spriteBatch.Draw(pixel, new Rectangle((rectangleToDraw.X - (int)camera.Position.X + rectangleToDraw.Width - thicknessOfBorder),
+                                                  rectangleToDraw.Y - (int)camera.Position.Y,
+                                                  thicknessOfBorder,
+                                                  rectangleToDraw.Height), borderColor);
+            // Draw bottom line
+            spriteBatch.Draw(pixel, new Rectangle(rectangleToDraw.X - (int)camera.Position.X,
+                                                  rectangleToDraw.Y - (int)camera.Position.Y + rectangleToDraw.Height - thicknessOfBorder,
+                                                  rectangleToDraw.Width,
+                                                  thicknessOfBorder), borderColor);
+        }
+
 
         public override void Draw (GameTime gameTime) {
             //graphics.GraphicsDevice.Clear (Color.CornflowerBlue);
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             spriteBatch.Begin();
-            
-
-            
+           
             foreach(KeyValuePair<string, Objekt> kvp in _objekts){
                 if(kvp.Value.InScreen()){
                     kvp.Value.Draw();
+                    DrawBorder2(spriteBatch, kvp.Value.Top, 1, Color.Red);
+                    DrawBorder2(spriteBatch, kvp.Value.Bottom, 1, Color.Red);
+                    DrawBorder2(spriteBatch, kvp.Value.Left, 1, Color.Red);
+                    DrawBorder2(spriteBatch, kvp.Value.Right, 1, Color.Red);
+
                 }
             }
+            // Create any rectangle you want. Here we'll use the TitleSafeArea for fun.
+            Rectangle titleSafeRectangle = ((MacGame)ScreenManager.Game).GraphicsDevice.Viewport.TitleSafeArea;
             
+            // Call our method (also defined in this blog-post)
+            DrawBorder(spriteBatch, titleSafeRectangle, 2, Color.Red);
             //_objekts["mouse-pointer"].Draw();
             spriteBatch.End();
         }
