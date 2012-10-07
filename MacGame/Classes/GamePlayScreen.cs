@@ -209,7 +209,7 @@ namespace maker {
                         if(col.Side == CollisionSide.Top)
                         {
                             player.playerStates["FALL"] = true;
-                            //player.playerStates["JUMP"] = false;
+                            player.playerStates["JUMP"] = false;
                         }
                     }
                     //System.Console.WriteLine("Collided:" + kvp.Key);

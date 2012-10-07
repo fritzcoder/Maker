@@ -6,7 +6,8 @@ namespace maker {
         Top, 
         Left, 
         Right, 
-        Bottom
+        Bottom,
+        Unknown
     }
 
     public class Collision {
@@ -54,6 +55,10 @@ namespace maker {
                     System.Console.WriteLine("Left: " + o2.GetType().Name);
                     return collided;
                 }
+
+                collided.Side = CollisionSide.Unknown;
+                collided.CollidedObjekt = o2;
+                return collided;
             }
 
             return null;

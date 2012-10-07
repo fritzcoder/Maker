@@ -73,6 +73,7 @@ namespace maker {
                                ScreenManager.SpriteBatch,
                                ((MacGame)ScreenManager.Game).graphics,
                                ((MacGame)ScreenManager.Game).camera, true));
+
             tiles["Ground"].Position = new Vector2(backgroundPosition.X + 20, 
                                                    backgroundPosition.Y + 100);
 
@@ -80,6 +81,7 @@ namespace maker {
                                          ScreenManager.SpriteBatch,
                                          ((MacGame)ScreenManager.Game).graphics,
                                          ((MacGame)ScreenManager.Game).camera, true));
+
             tiles["Ground2"].Position = new Vector2(backgroundPosition.X + 60, 
                                                    backgroundPosition.Y + 100);
 
@@ -100,12 +102,13 @@ namespace maker {
 
         
         #region Updating
-        protected Objekt Collided(Objekt o)
+        protected Collision Collided(Objekt o)
         {
             foreach(KeyValuePair<string, Tile> kvp in tiles){
-                if(kvp.Value.InScreen() && !kvp.Value.Equals(o) && kvp.Value.Collidable){
-                    if(Utility.BoundingCollision(o, kvp.Value)){
-                        return (Objekt)kvp.Value;
+                if(!kvp.Value.Equals(o) && kvp.Value.Collidable){
+                    Collision clicked = Collision.Collided(o, kvp.Value);
+                    if(clicked != null){
+                        return clicked;
                     }
                 }
             }
@@ -118,11 +121,15 @@ namespace maker {
         public override void HandleInput () {
 
             if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
-                Tile selected = (Tile)Collided(mouse);
+                System.Console.WriteLine("Mouse X: " + Mouse.GetState().X + 
+                                         " Mouse Y: " + Mouse.GetState().Y);
+                System.Console.WriteLine("Tile X: " + tiles["Ground"].Position.X + 
+                                         " Tile Y: " + tiles["Ground"].Position.Y);
+                Collision selected = Collided(mouse);
                 if(selected != null)
                 {
-                    ((GamePlayScreen)ScreenManager.screens["GamePlay"]).selected_tile = 
-                        (Tile)selected.Clone(); 
+                    Tile tile = (Tile)selected.CollidedObjekt;
+                    ((GamePlayScreen)ScreenManager.screens["GamePlay"]).selected_tile = (Tile)tile.Clone();
                 }
             }
 
@@ -138,12 +145,7 @@ namespace maker {
 
         }
         
-        
-#endregion
-        
-        
-        #region Drawing
-        
+
         
         /// <summary>
         /// draws the dialog.
@@ -155,6 +157,8 @@ namespace maker {
 
             mouse.Position = new Vector2(Mouse.GetState().X, 
                         Mouse.GetState().Y); 
+//            System.Console.WriteLine("Mouse X: " + Mouse.GetState().X + 
+//                                     " Mouse Y: " + Mouse.GetState().Y);
 //            // draw the fading screen
 //            //spriteBatch.Draw(fadeTexture, new Rectangle(0, 0, 1280, 720), Color.White);
 //            
