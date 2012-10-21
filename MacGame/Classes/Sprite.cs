@@ -42,6 +42,7 @@ namespace maker
 		public Sprite(ContentManager content, string assetName, bool worldPosition = true){
             Scale = 1;
 			Texture = content.Load<Texture2D>(assetName);
+            Texture.Name = assetName;
 			//Size = new Rectangle(0, 0, (int)(Texture.Width * Scale), (int)(Texture.Height * Scale));
             _width = Texture.Width;
             _height = Texture.Height;

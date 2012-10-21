@@ -1,10 +1,12 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
+using Newtonsoft.Json;
 
 
 namespace maker {
@@ -40,88 +42,105 @@ namespace maker {
 
         public override void LoadContent () {
             MacGame _game = (MacGame)ScreenManager.Game;
-            pixel = new Texture2D(_game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-
-            pixel.SetData(new[] { Color.White }); // so that we can draw whatever color we want on top of it
-
-            _objekts.Add("bg1", new Objekt( 
-                                           _game.spriteBatch, _game.graphics, _game.camera,false));
-            _objekts.Add("bg2", new Objekt(
-                                           _game.spriteBatch, _game.graphics, _game.camera, false));
-            _objekts.Add("bg3", new Objekt(
-                                           _game.spriteBatch, _game.graphics, _game.camera, false));
-            _objekts.Add("bg4", new Objekt(
-                                           _game.spriteBatch, _game.graphics, _game.camera, false));
-
-            _objekts["bg1"].AddSprite("bg1", new Sprite(_game.Content, "Background01"));
-            _objekts["bg2"].AddSprite("bg2", new Sprite(_game.Content, "Background02"));
-            _objekts["bg3"].AddSprite("bg3", new Sprite(_game.Content, "Background03"));
-            _objekts["bg4"].AddSprite("bg4", new Sprite(_game.Content, "Background05"));
-
-            _objekts["bg1"].SelectedAction = "bg1";
-            _objekts["bg2"].SelectedAction = "bg2";
-            _objekts["bg3"].SelectedAction = "bg3";
-            _objekts["bg4"].SelectedAction = "bg4";
-
-            _objekts["bg1"].Scale = 3.0f;
-            _objekts["bg2"].Scale = 3.0f;
-            _objekts["bg3"].Scale = 3.0f;
-            _objekts["bg4"].Scale = 3.0f;
-
-            _objekts["bg1"].Position = new Vector2(0,-100);
-            _objekts["bg2"].Position = new Vector2(_objekts["bg1"].Position.X + _objekts["bg1"].Size.Width, -100);
-            _objekts["bg3"].Position = new Vector2(_objekts["bg2"].Position.X + _objekts["bg2"].Size.Width, -100);
-            _objekts["bg4"].Position = new Vector2(_objekts["bg3"].Position.X + _objekts["bg3"].Size.Width, -100);
-
-            for(int i = 0; i < 32; i++){
-                _objekts.Add("tile" + i.ToString(), 
-                             new Tile(new Sprite(_game.Content, "Ground"),
-                         _game.spriteBatch,
-                         _game.graphics,
-                         _game.camera, 
-                         true));
-                
-                _objekts["tile" + i.ToString()].Position = new Vector2(i * 32,650);
-                ((Tile)_objekts["tile" + i.ToString()]).SolidTop = true;
-            }
-            
-            
-            for(int i = 0; i < 32; i++){
-                _objekts.Add("tileA" + i.ToString(), 
-                             new Tile(new Sprite(_game.Content, "Ground"),
-                         _game.spriteBatch,
-                         _game.graphics,
-                         _game.camera, true));
-                
-                _objekts["tileA" + i.ToString()].Position = new Vector2((i + 30) * 32,550);
-                ((Tile)_objekts["tileA" + i.ToString()]).SolidTop = true;
-            }
-            
-            _objekts.Add("hero", 
-                         new Player(
-                       _game.spriteBatch,
-                       _game.graphics,
-                       _game.camera));
-
-            _objekts["hero"].AddSprite("right",new Sprite(_game.Content, "maker_walk", 1, 4));
-            _objekts["hero"].AddSprite("left",new Sprite(_game.Content, "maker_walk_left", 1, 4));
-            _objekts["hero"].SelectedAction = "right";
-            _objekts["hero"].Position = new Vector2(10, 100); 
-
-
-            
-            _objekts.Add("mouse-pointer", 
-                         new Objekt( 
-                       _game.spriteBatch, _game.graphics, _game.camera, false));
-            _objekts["mouse-pointer"].AddSprite("point", new Sprite(_game.Content, "mouse-pointer"));
-            _objekts["mouse-pointer"].SelectedAction = "point";
-            _objekts["mouse-pointer"].Position = new Vector2(0,0);
             Camera camera = ((MacGame)ScreenManager.Game).camera;
 
-            selected_tile = new Tile(new Sprite(ScreenManager.Game.Content, "Ground2"),
+            pixel = new Texture2D(_game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+            pixel.SetData(new[] { Color.White });
+
+//            _objekts.Add("bg1", new Objekt( 
+//                                           _game.spriteBatch, _game.graphics, _game.camera,false));
+//            _objekts.Add("bg2", new Objekt(
+//                                           _game.spriteBatch, _game.graphics, _game.camera, false));
+//            _objekts.Add("bg3", new Objekt(
+//                                           _game.spriteBatch, _game.graphics, _game.camera, false));
+//            _objekts.Add("bg4", new Objekt(
+//                                           _game.spriteBatch, _game.graphics, _game.camera, false));
+
+//            _objekts["bg1"].AddSprite("bg1", new Sprite(_game.Content, "Background01"));
+//            _objekts["bg2"].AddSprite("bg2", new Sprite(_game.Content, "Background02"));
+//            _objekts["bg3"].AddSprite("bg3", new Sprite(_game.Content, "Background03"));
+//            _objekts["bg4"].AddSprite("bg4", new Sprite(_game.Content, "Background05"));
+
+//            _objekts["bg1"].SelectedAction = "bg1";
+//            _objekts["bg2"].SelectedAction = "bg2";
+//            _objekts["bg3"].SelectedAction = "bg3";
+//            _objekts["bg4"].SelectedAction = "bg4";
+
+//            _objekts["bg1"].Scale = 3.0f;
+//            _objekts["bg2"].Scale = 3.0f;
+//            _objekts["bg3"].Scale = 3.0f;
+//            _objekts["bg4"].Scale = 3.0f;
+//
+//            _objekts["bg1"].Position = new Vector2(0,-100);
+//            _objekts["bg2"].Position = new Vector2(_objekts["bg1"].Position.X + _objekts["bg1"].Size.Width, -100);
+//            _objekts["bg3"].Position = new Vector2(_objekts["bg2"].Position.X + _objekts["bg2"].Size.Width, -100);
+//            _objekts["bg4"].Position = new Vector2(_objekts["bg3"].Position.X + _objekts["bg3"].Size.Width, -100);
+
+//            for(int i = 0; i < 32; i++){
+//                _objekts.Add("tile" + i.ToString(), 
+//                             new Tile(
+//                         _game.spriteBatch,
+//                         _game.graphics,
+//                         _game.camera, 
+//                         true));
+//                _objekts["tile" + i.ToString()].AddSprite("tile", new Sprite(_game.Content, "Ground"));
+//                _objekts["tile" + i.ToString()].SelectedAction = "tile";
+//                _objekts["tile" + i.ToString()].Position = new Vector2(i * 32,650);
+//                ((Tile)_objekts["tile" + i.ToString()]).SolidTop = true;
+//            }
+//            
+            
+//            for(int i = 0; i < 32; i++){
+//                _objekts.Add("tileA" + i.ToString(), 
+//                             new Tile(
+//                         _game.spriteBatch,
+//                         _game.graphics,
+//                         _game.camera, true));
+//                _objekts["tileA" + i.ToString()].AddSprite("tile", new Sprite(_game.Content, "Ground"));
+//                _objekts["tileA" + i.ToString()].SelectedAction = "tile";
+//                _objekts["tileA" + i.ToString()].Position = new Vector2((i + 30) * 32,550);
+//                ((Tile)_objekts["tileA" + i.ToString()]).SolidTop = true;
+//            }
+            
+//            _objekts.Add("hero", 
+//                         new Player(
+//                       _game.spriteBatch,
+//                       _game.graphics,
+//                       _game.camera));
+//
+//            _objekts["hero"].AddSprite("right",new Sprite(_game.Content, "maker_walk", 1, 4));
+//            _objekts["hero"].AddSprite("left",new Sprite(_game.Content, "maker_walk_left", 1, 4));
+//            _objekts["hero"].SelectedAction = "right";
+//            _objekts["hero"].Position = new Vector2(10, 100); 
+//
+//            _objekts.Add("mouse-pointer", 
+//                         new Objekt( 
+//                       _game.spriteBatch, _game.graphics, _game.camera, false));
+//            _objekts["mouse-pointer"].AddSprite("point", new Sprite(_game.Content, "mouse-pointer"));
+//            _objekts["mouse-pointer"].SelectedAction = "point";
+//            _objekts["mouse-pointer"].Position = new Vector2(0,0);
+
+
+            selected_tile = new Tile(
                      ScreenManager.SpriteBatch,
                      ((MacGame)ScreenManager.Game).graphics,
                      camera, true);
+
+            selected_tile.AddSprite("tile", new Sprite(ScreenManager.Game.Content, "Ground2"));
+            selected_tile.SelectedAction = "tile";
+
+            //Level level = new Level("Level1");
+            //level.Save(_objekts);
+            //string output = JsonConvert.SerializeObject(level,Formatting.Indented);
+            //File.WriteAllText(@"/Users/Fritz/Documents/level1.json", output);
+
+            //string levelfile = File.ReadAllText(@"/Users/Fritz/Documents/level1.json");
+
+            //level = JsonConvert.DeserializeObject<Level>(levelfile);
+
+            _objekts = LevelLoader.Load("Level1", _game.spriteBatch, 
+                                        _game.graphics, _game.camera, ScreenManager.Game.Content);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
@@ -144,6 +163,7 @@ namespace maker {
                         
                         newO.Position = new Vector2(x,y);
                         newO.WorldPosition = true;
+                        newO.SelectedAction = "tile";
                         
                         if(Collided(newO).Count == 0)
                         {
@@ -153,6 +173,15 @@ namespace maker {
                     }
                 }
                
+                if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.S)){
+                    Level level = new Level("Level1");
+                    level.Save(_objekts);
+                    string output = JsonConvert.SerializeObject(level,Formatting.Indented);
+                    File.WriteAllText(@"/Users/Fritz/Documents/level_Save.json", output);
+
+                }
+
+
                 if(Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Tab)){
                     TileScreen tileScreen = new TileScreen();
                     tileScreen.TitleText = "Maker";
@@ -229,7 +258,8 @@ namespace maker {
                 if(player.Position.X > ((MacGame)ScreenManager.Game).graphics.GraphicsDevice.DisplayMode.Width / 2)
                     camera.Position = 
                         new Vector2(player.Position.X - ((MacGame)ScreenManager.Game).graphics.GraphicsDevice.DisplayMode.Width / 2,0);
-                
+                if(player.Position.Y > 720)
+                    player.Position = new Vector2(player.Position.X, 0);
                 // TODO: Add your update logic here 
                 //screenManager.Update(gameTime);
                

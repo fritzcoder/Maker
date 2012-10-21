@@ -69,21 +69,27 @@ namespace maker {
                                Fonts.HeaderFont.MeasureString(titleText).X) / 2;
             titlePosition.Y = backgroundPosition.Y + 70f;
 
-            tiles.Add("Ground", new Tile(new Sprite(content, "Ground", false),
+            tiles.Add("Ground", new Tile(
                                ScreenManager.SpriteBatch,
                                ((MacGame)ScreenManager.Game).graphics,
                                ((MacGame)ScreenManager.Game).camera, true));
 
+            tiles["Ground"].AddSprite("tile", new Sprite(content, "Ground", false));
             tiles["Ground"].Position = new Vector2(backgroundPosition.X + 20, 
                                                    backgroundPosition.Y + 100);
+            tiles["Ground"].SelectedAction = "tile";
 
-            tiles.Add("Ground2", new Tile(new Sprite(content, "Ground2", false),
+            tiles.Add("Ground2", new Tile(
                                          ScreenManager.SpriteBatch,
                                          ((MacGame)ScreenManager.Game).graphics,
                                          ((MacGame)ScreenManager.Game).camera, true));
 
+            tiles["Ground2"].AddSprite("tile", new Sprite(content, "Ground2", false));
+
             tiles["Ground2"].Position = new Vector2(backgroundPosition.X + 60, 
                                                    backgroundPosition.Y + 100);
+
+            tiles["Ground2"].SelectedAction = "tile";
 
             mouse = new Objekt( 
                                ScreenManager.SpriteBatch,
@@ -144,9 +150,7 @@ namespace maker {
             }
 
         }
-        
-
-        
+    
         /// <summary>
         /// draws the dialog.
         /// </summary>

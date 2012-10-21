@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
+using Newtonsoft.Json;
 
 
 namespace maker
@@ -25,15 +26,23 @@ namespace maker
         protected Dictionary<string, Sprite> _sprites;
         protected SpriteBatch _spriteBatch;
         protected GraphicsDeviceManager _graphics;
-        public Rectangle _top; 
-        public Rectangle _bottom;
-        public Rectangle _left;
-        public Rectangle _right;
+        protected Rectangle _top; 
+        protected Rectangle _bottom;
+        protected Rectangle _left;
+        protected Rectangle _right;
         protected Camera _camera;
         protected Vector2 _position;
 
         public bool Collidable { set; get; }
 
+        [JsonIgnore]
+        public Dictionary<string, Sprite> Sprites {
+            get{
+                return _sprites;
+            }
+        }
+
+        [JsonIgnore]
         public Rectangle Top {
             get {
                 _top.X = _sprite.Bounds.X + _sprite.Bounds.Width/4;
@@ -41,7 +50,7 @@ namespace maker
                return _top;
             }
         }
-
+        [JsonIgnore]
         public Rectangle Bottom {
             get {
                 _bottom.X = _sprite.Bounds.X + _sprite.Bounds.Width/4;
@@ -49,7 +58,7 @@ namespace maker
                 return _bottom;
             }
         }
-
+        [JsonIgnore]
         public Rectangle Left {
             get {
                 _left.X = _sprite.Bounds.X;
@@ -57,7 +66,7 @@ namespace maker
                 return _left;
             }
         }
-
+        [JsonIgnore]
         public Rectangle Right {
             get {
                 _right.X = _sprite.Bounds.X+Left.Width;
@@ -65,7 +74,7 @@ namespace maker
                 return _right;
             }
         }
-
+        [JsonIgnore]
         public bool WorldPosition { 
             get {
                 return _sprite.WorldPosition;
@@ -82,10 +91,9 @@ namespace maker
 
             set{
                 _position = value;
-                _sprite.Position = Position;
             }
         }
-    
+       
         public float Scale{
             get{
                 return _sprite.Scale;
@@ -95,6 +103,7 @@ namespace maker
             }
         }
 
+        [JsonIgnore]
         public float Angle{
             get{
                 return _sprite.Angle;
@@ -103,13 +112,14 @@ namespace maker
                 _sprite.Angle = value;
             }
         }
-
+        [JsonIgnore]
         public Rectangle Size{
             get{
                 return _sprite.Size;
             }
         }
 
+        [JsonIgnore]
         public Rectangle Bounds{
             get{
                 return _sprite.Bounds;
@@ -137,6 +147,8 @@ namespace maker
         public Objekt() { }
 
         private string _selectedAction; 
+
+        [JsonIgnore]
         public string SelectedAction {
             get {
                 return _selectedAction;
@@ -165,7 +177,7 @@ namespace maker
         }
        
         public void Draw(){
-           
+            //_sprite.Scale = _scale;
             _sprite.Position = _position;
             _sprite.Draw(_spriteBatch,_camera.Position);
 

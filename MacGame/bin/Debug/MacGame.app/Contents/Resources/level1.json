@@ -1,0 +1,1607 @@
+{
+  "Objects": [
+    {
+      "Type": "maker.Objekt",
+      "Name": "bg1",
+      "Actions": [
+        {
+          "Name": "bg1",
+          "Asset": "Background01"
+        }
+      ],
+      "Obj": {
+        "Collidable": false,
+        "Position": {
+          "X": 0.0,
+          "Y": -100.0
+        },
+        "Scale": 3.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Objekt",
+      "Name": "bg2",
+      "Actions": [
+        {
+          "Name": "bg2",
+          "Asset": "Background02"
+        }
+      ],
+      "Obj": {
+        "Collidable": false,
+        "Position": {
+          "X": 1200.0,
+          "Y": -100.0
+        },
+        "Scale": 3.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Objekt",
+      "Name": "bg3",
+      "Actions": [
+        {
+          "Name": "bg3",
+          "Asset": "Background03"
+        }
+      ],
+      "Obj": {
+        "Collidable": false,
+        "Position": {
+          "X": 2400.0,
+          "Y": -100.0
+        },
+        "Scale": 3.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Objekt",
+      "Name": "bg4",
+      "Actions": [
+        {
+          "Name": "bg4",
+          "Asset": "Background05"
+        }
+      ],
+      "Obj": {
+        "Collidable": false,
+        "Position": {
+          "X": 3600.0,
+          "Y": -100.0
+        },
+        "Scale": 3.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile0",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 0.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile1",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 32.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile2",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 64.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile3",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 96.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile4",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 128.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile5",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 160.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile6",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 192.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile7",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 224.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile8",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 256.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile9",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 288.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile10",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 320.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile11",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 352.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile12",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 384.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile13",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 416.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile14",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 448.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile15",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 480.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile16",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 512.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile17",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 544.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile18",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 576.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile19",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 608.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile20",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 640.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile21",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 672.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile22",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 704.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile23",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 736.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile24",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 768.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile25",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 800.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile26",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 832.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile27",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 864.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile28",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 896.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile29",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 928.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile30",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 960.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tile31",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 992.0,
+          "Y": 650.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA0",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 960.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA1",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 992.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA2",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1024.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA3",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1056.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA4",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1088.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA5",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1120.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA6",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1152.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA7",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1184.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA8",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1216.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA9",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1248.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA10",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1280.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA11",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1312.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA12",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1344.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA13",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1376.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA14",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1408.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA15",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1440.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA16",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1472.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA17",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1504.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA18",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1536.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA19",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1568.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA20",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1600.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA21",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1632.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA22",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1664.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA23",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1696.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA24",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1728.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA25",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1760.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA26",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1792.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA27",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1824.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA28",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1856.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA29",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1888.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA30",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1920.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Tile",
+      "Name": "tileA31",
+      "Actions": [
+        {
+          "Name": "tile",
+          "Asset": "Ground"
+        }
+      ],
+      "Obj": {
+        "SolidTop": true,
+        "SolidBottom": false,
+        "SolidRight": false,
+        "SolidLeft": false,
+        "Collidable": true,
+        "Position": {
+          "X": 1952.0,
+          "Y": 550.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Player",
+      "Name": "hero",
+      "Actions": [
+        {
+          "Name": "right",
+          "Asset": "maker_walk"
+        },
+        {
+          "Name": "left",
+          "Asset": "maker_walk_left"
+        }
+      ],
+      "Obj": {
+        "playerStates": {
+          "UP": false,
+          "DOWN": false,
+          "LEFT": false,
+          "RIGHT": false,
+          "JUMP": false,
+          "RUN": false,
+          "FALL": false,
+          "DEAD": false
+        },
+        "Speed": 10,
+        "JumpHeight": 14,
+        "Collidable": false,
+        "Position": {
+          "X": 10.0,
+          "Y": 100.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    },
+    {
+      "Type": "maker.Objekt",
+      "Name": "mouse-pointer",
+      "Actions": [
+        {
+          "Name": "point",
+          "Asset": "mouse-pointer"
+        }
+      ],
+      "Obj": {
+        "Collidable": false,
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Scale": 1.0,
+        "Angle": 0.0
+      }
+    }
+  ],
+  "Name": "Level1"
+}

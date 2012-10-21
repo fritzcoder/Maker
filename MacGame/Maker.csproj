@@ -57,6 +57,9 @@
     <Reference Include="MonoGame.Framework.MacOS">
       <HintPath>bin\Debug\MonoGame.Framework.MacOS.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="Classes\TileScreen.cs" />
     <Compile Include="Classes\GamePlayScreen.cs" />
     <Compile Include="Classes\Collision.cs" />
+    <Compile Include="Classes\Level.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />

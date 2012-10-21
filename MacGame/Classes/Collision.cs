@@ -39,7 +39,6 @@ namespace maker {
                     return collided;
                 }
 
-                
                 if(o1.Right.Intersects(o2.Bounds))
                 {
                     collided.Side = CollisionSide.Right;
