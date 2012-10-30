@@ -65,13 +65,10 @@
     <Compile Include="Main.cs" />
     <Compile Include="CollisionDetection2D.cs" />
     <Compile Include="Classes\GameScreen.cs" />
-    <Compile Include="Classes\Objekt.cs" />
-    <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\SceneNode.cs" />
     <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\Sprite.cs" />
     <Compile Include="Classes\TestEnemy.cs" />
-    <Compile Include="Classes\Tile.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Classes\Camera.cs" />
     <Compile Include="Game.cs" />
@@ -81,6 +78,10 @@
     <Compile Include="Classes\GamePlayScreen.cs" />
     <Compile Include="Classes\Collision.cs" />
     <Compile Include="Classes\Level.cs" />
+    <Compile Include="Classes\GameObjects\Objekt.cs" />
+    <Compile Include="Classes\GameObjects\Player.cs" />
+    <Compile Include="Classes\GameObjects\MousePointer.cs" />
+    <Compile Include="Classes\GameObjects\Tile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
@@ -114,6 +115,8 @@
     <Folder Include="Content\Textures\" />
     <Folder Include="Content\New Folder\" />
     <Folder Include="Content\Fonts\" />
+    <Folder Include="Classes\GameObjects\" />
+    <Folder Include="Classes\GameObjects\Tiles\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />
@@ -372,6 +375,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\maker_walk_left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\eraser.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

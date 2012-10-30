@@ -123,9 +123,7 @@ namespace maker {
 
 
             selected_tile = new Tile(
-                     ScreenManager.SpriteBatch,
-                     ((MacGame)ScreenManager.Game).graphics,
-                     camera, true);
+                (MacGame)ScreenManager.Game, true);
 
             selected_tile.AddSprite("tile", new Sprite(ScreenManager.Game.Content, "Ground2"));
             selected_tile.SelectedAction = "tile";
@@ -139,8 +137,8 @@ namespace maker {
 
             //level = JsonConvert.DeserializeObject<Level>(levelfile);
 
-            _objekts = LevelLoader.Load("Level1", _game.spriteBatch, 
-                                        _game.graphics, _game.camera, ScreenManager.Game.Content);
+            _objekts = LevelLoader.Load("Level1",_game, ScreenManager.Game.Content);
+           // _objekts["mouse-pointer"] = new MousePointer(_game);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
@@ -159,16 +157,37 @@ namespace maker {
 
                     if(!_objekts.ContainsKey("tileB" + x.ToString() + y.ToString()))
                     {
-                        Objekt newO = (Tile)selected_tile.Clone();
-                        
-                        newO.Position = new Vector2(x,y);
-                        newO.WorldPosition = true;
-                        newO.SelectedAction = "tile";
-                        
-                        if(Collided(newO).Count == 0)
+                        MousePointer pointer = (MousePointer)_objekts["mouse-pointer"];
+
+                        Objekt newO = new Objekt();
+                        if(selected_tile == null)
                         {
+                            pointer.State = MousePointer.MouseState.Erase;
+                        }
+                        else
+                        {
+                            newO = (Tile)selected_tile.Clone();
+                            newO.Position = new Vector2(x,y);
+                            newO.WorldPosition = true;
+                            newO.SelectedAction = "tile";
+                            pointer.State = MousePointer.MouseState.Point;
+                        }
+
+                        List<Collision> mouseCollisions = Collided(pointer);
+                        if(pointer.State == MousePointer.MouseState.Point 
+                           && mouseCollisions.Count == 0)
+                        {
+                            newO.Name = "tileB" + x.ToString() + y.ToString();
                             _objekts.Add("tileB" + x.ToString() + y.ToString(), 
                                         newO);
+                        }
+                        else if(pointer.State == MousePointer.MouseState.Erase
+                                && mouseCollisions.Count > 0)
+                        {
+                            foreach(Collision c in mouseCollisions)
+                            {
+                                _objekts.Remove(c.CollidedObjekt.Name);
+                            }
                         }
                     }
                 }
@@ -178,7 +197,6 @@ namespace maker {
                     level.Save(_objekts);
                     string output = JsonConvert.SerializeObject(level,Formatting.Indented);
                     File.WriteAllText(@"/Users/Fritz/Documents/level_Save.json", output);
-
                 }
 
 

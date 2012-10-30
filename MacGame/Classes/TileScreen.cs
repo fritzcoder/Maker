@@ -69,20 +69,14 @@ namespace maker {
                                Fonts.HeaderFont.MeasureString(titleText).X) / 2;
             titlePosition.Y = backgroundPosition.Y + 70f;
 
-            tiles.Add("Ground", new Tile(
-                               ScreenManager.SpriteBatch,
-                               ((MacGame)ScreenManager.Game).graphics,
-                               ((MacGame)ScreenManager.Game).camera, true));
+            tiles.Add("Ground", new Tile((MacGame)ScreenManager.Game, true));
 
             tiles["Ground"].AddSprite("tile", new Sprite(content, "Ground", false));
             tiles["Ground"].Position = new Vector2(backgroundPosition.X + 20, 
                                                    backgroundPosition.Y + 100);
             tiles["Ground"].SelectedAction = "tile";
 
-            tiles.Add("Ground2", new Tile(
-                                         ScreenManager.SpriteBatch,
-                                         ((MacGame)ScreenManager.Game).graphics,
-                                         ((MacGame)ScreenManager.Game).camera, true));
+            tiles.Add("Ground2", new Tile((MacGame)ScreenManager.Game, true));
 
             tiles["Ground2"].AddSprite("tile", new Sprite(content, "Ground2", false));
 
@@ -91,10 +85,17 @@ namespace maker {
 
             tiles["Ground2"].SelectedAction = "tile";
 
-            mouse = new Objekt( 
-                               ScreenManager.SpriteBatch,
-                               ((MacGame)ScreenManager.Game).graphics,
-                               ((MacGame)ScreenManager.Game).camera, true);
+
+            tiles.Add("Eraser", new Tile(
+                (MacGame)ScreenManager.Game, true));
+            
+            tiles["Eraser"].AddSprite("eraser", new Sprite(content, "eraser", false));
+            tiles["Eraser"].Position = new Vector2(backgroundPosition.X + 550, 
+                                                   backgroundPosition.Y + 400);
+            tiles["Eraser"].SelectedAction = "eraser";
+
+
+            mouse = new Objekt((MacGame)ScreenManager.Game, true);
 
             mouse.AddSprite("point",new Sprite(content, "mouse-pointer",false));
             mouse.SelectedAction = "point";
@@ -127,15 +128,25 @@ namespace maker {
         public override void HandleInput () {
 
             if (Mouse.GetState ().LeftButton == ButtonState.Pressed) {
+
                 System.Console.WriteLine("Mouse X: " + Mouse.GetState().X + 
                                          " Mouse Y: " + Mouse.GetState().Y);
                 System.Console.WriteLine("Tile X: " + tiles["Ground"].Position.X + 
                                          " Tile Y: " + tiles["Ground"].Position.Y);
+
                 Collision selected = Collided(mouse);
                 if(selected != null)
                 {
                     Tile tile = (Tile)selected.CollidedObjekt;
-                    ((GamePlayScreen)ScreenManager.screens["GamePlay"]).selected_tile = (Tile)tile.Clone();
+
+                    if(tile.SelectedAction == "eraser")
+                    {
+                        ((GamePlayScreen)ScreenManager.screens["GamePlay"]).selected_tile = null;
+                    }
+                    else
+                    {
+                        ((GamePlayScreen)ScreenManager.screens["GamePlay"]).selected_tile = (Tile)tile.Clone();
+                    }
                 }
             }
 
@@ -177,6 +188,7 @@ namespace maker {
           
             tiles["Ground"].Draw();
             tiles["Ground2"].Draw();
+            tiles["Eraser"].Draw();
             mouse.Draw();
             spriteBatch.End();
         }

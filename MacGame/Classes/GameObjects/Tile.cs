@@ -13,13 +13,10 @@ namespace maker
         public bool SolidBottom { get; set; }
         public bool SolidRight { get; set; }
         public bool SolidLeft { get; set; }
+        private MacGame _game;
 
         public Object Clone () {
-            Tile c = new Tile(
-                              this._spriteBatch,
-                              this._graphics,
-                              this._camera,
-                              this.Collidable);
+            Tile c = new Tile(this._game, this.Collidable);
             c.AddSprite("tile",(Sprite)this._sprite.Clone());
             c.SelectedAction = "tile";
             return c;
@@ -47,20 +44,17 @@ namespace maker
             }
         }   
 
-        public Tile( 
-                    SpriteBatch spriteBatch,
-                    GraphicsDeviceManager graphics,
-                    Camera camera,
+        public Tile(MacGame game,
                     bool collidable){
             _sprites = new Dictionary<string, Sprite>();
             //this.AddSprite("tile", sprite);
             //this.SelectedAction = "tile";
             //_sprite = sprite;
-            _spriteBatch = spriteBatch;
-            _graphics = graphics;
-            _camera = camera;
+            _spriteBatch = game.spriteBatch;
+            _graphics = game.graphics;
+            _camera = game.camera;
+            _game = game;
             Collidable = collidable;
-
     }
   }
 }

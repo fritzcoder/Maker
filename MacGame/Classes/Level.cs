@@ -44,9 +44,7 @@ namespace maker {
             Name = name;
         }
 
-        public Dictionary<string, Objekt> Load (SpriteBatch spriteBatch,
-                                               GraphicsDeviceManager graphics,
-                                               Camera camera,
+        public Dictionary<string, Objekt> Load (MacGame game,
                                                ContentManager content) {
             Dictionary<string, Objekt> levelObjects = 
                 new Dictionary<string, Objekt> ();
@@ -57,11 +55,11 @@ namespace maker {
                 switch(o.Type)
                 {
                 case "maker.Objekt":
-                    add = new Objekt(spriteBatch,graphics,camera,o.Obj.Collidable);
+                    add = new Objekt(game,o.Obj.Collidable);
                     break;
                 case "maker.Tile":
                     Tile tile = (Tile)o.Obj;
-                    add = new Tile(spriteBatch,graphics,camera,true);
+                    add = new Tile(game,true);
                     //((Tile)add).SolidBottom = tile.SolidBottom;
                     //((Tile)add).SolidLeft = tile.SolidLeft;
                     //((Tile)add).SolidRight = tile.SolidRight;
@@ -69,7 +67,7 @@ namespace maker {
                     break;
                 case "maker.Player":
                     Player player = (Player)o.Obj;
-                    add = new Player(spriteBatch,graphics,camera);
+                    add = new Player(game);
                     break;
                 }
 
@@ -119,10 +117,35 @@ namespace maker {
 
         }
 
+        private static void LoadActions (Objekt o, JArray actions, MacGame game) {
+            //JArray actions = (JArray)obj["Actions"];
+            string firstAction = (string)actions[0]["Name"];
+            int rows = 0;
+            int cols = 0;
+           
+            for(int i2 = 0; i2 < actions.Count; i2++)
+            {
+                rows = (int)actions[i2]["Rows"];
+                cols = (int)actions[i2]["Columns"];
+                //scale = (float)actions[i2]["Scale"];
+                if(rows == 0 && cols == 0)
+                {
+                    o.AddSprite((string)actions[i2]["Name"],
+                                  new Sprite(game.Content, (string)actions[i2]["Asset"]));
+                }
+                else
+                {
+                    o.AddSprite((string)actions[i2]["Name"],
+                                  new Sprite(game.Content, (string)actions[i2]["Asset"],rows,cols));
+                }
+            }
+
+            o.SelectedAction = firstAction;
+
+        }
+
         public static Dictionary<string, Objekt> Load (string fileName,
-                                                       SpriteBatch spriteBatch,
-                                                       GraphicsDeviceManager graphics,
-                                                       Camera camera,
+                                                       MacGame game,
                                                        ContentManager content) {
 
             Dictionary<string, Objekt> gameObjekts = new Dictionary<string, Objekt>();
@@ -137,21 +160,27 @@ namespace maker {
                 JObject obj = (JObject)objekts[i];
                 Objekt add = null;
                 JObject gObject = (JObject)obj["Obj"];
+                JArray actions = (JArray)obj["Actions"];
 
                 switch((string)obj["Type"])
                 {
                     case "maker.Objekt":
-                        add = new Objekt(spriteBatch,graphics,camera,false);
+                        add = new Objekt(game,false);
+                        LoadActions(add, actions, game);
                         break;
                     case "maker.Tile":
-                        add = new Tile(spriteBatch,graphics,camera,true);
+                        add = new Tile(game,true);
                         ((Tile)add).SolidBottom = (bool)gObject["SolidBottom"];
                         ((Tile)add).SolidLeft = (bool)gObject["SolidLeft"];
                         ((Tile)add).SolidRight = (bool)gObject["SolidRight"];
                         ((Tile)add).SolidTop = (bool)gObject["SolidTop"];
+                        LoadActions(add, actions, game);
                         break;
                     case "maker.Player":
-                        add = new Player(spriteBatch,graphics,camera);
+                        add = new Player(game);
+                        break;
+                    case "maker.MousePointer":
+                        add = new MousePointer(game);
                         break;
                 }
 
@@ -161,31 +190,11 @@ namespace maker {
                 add.Position = new Vector2((float)position["X"],
                                            (float)position["Y"]);
 
-                JArray actions = (JArray)obj["Actions"];
                 string firstAction = (string)actions[0]["Name"];
-                int rows = 0;
-                int cols = 0;
                 float scale = (float)actions[0]["Scale"];
 
-                for(int i2 = 0; i2 < actions.Count; i2++)
-                {
-                    rows = (int)actions[i2]["Rows"];
-                    cols = (int)actions[i2]["Columns"];
-                    //scale = (float)actions[i2]["Scale"];
-                    if(rows == 0 && cols == 0)
-                    {
-                        add.AddSprite((string)actions[i2]["Name"],
-                                  new Sprite(content, (string)actions[i2]["Asset"]));
-                    }
-                    else
-                    {
-                        add.AddSprite((string)actions[i2]["Name"],
-                                      new Sprite(content, (string)actions[i2]["Asset"],rows,cols));
-                    }
-                }
-
-                add.SelectedAction = firstAction;
                 add.Scale = scale;
+                add.Name = (string)obj["Name"];
                 gameObjekts.Add((string)obj["Name"], add);
             }
 

@@ -24,6 +24,7 @@ namespace maker
         //This will render the left action;
 
         protected Dictionary<string, Sprite> _sprites;
+        public string Name { get; set; }
         protected SpriteBatch _spriteBatch;
         protected GraphicsDeviceManager _graphics;
         protected Rectangle _top; 
@@ -126,21 +127,17 @@ namespace maker
             }
         }
 
-        public Objekt(
-                  SpriteBatch spriteBatch,
-                  GraphicsDeviceManager graphics,
-                  Camera camera,
-                  bool collidable){
+        public Objekt(MacGame game,
+                            bool collidable){
             _top = new Rectangle();
             _bottom = new Rectangle();
             _right = new Rectangle();
             _left = new Rectangle();
 
-           
             _sprites = new Dictionary<string, Sprite>();
-            _spriteBatch = spriteBatch;
-            _graphics = graphics;
-            _camera = camera;
+            _spriteBatch = game.spriteBatch;
+            _graphics = game.graphics;
+            _camera = game.camera;
             Collidable = collidable;
         }
 

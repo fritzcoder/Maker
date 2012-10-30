@@ -1,28 +1,29 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MacGame/Classes/Level.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MacGame/Classes/MousePointer.cs">
     <Files>
-      <File FileName="MacGame/Classes/GamePlayScreen.cs" Line="140" Column="72" />
-      <File FileName="MacGame/Game.cs" Line="64" Column="1" />
-      <File FileName="MacGame/Classes/ScreenManager.cs" Line="205" Column="1" />
-      <File FileName="MacGame/Classes/GameScreen.cs" Line="64" Column="6" />
-      <File FileName="MacGame/Classes/TileScreen.cs" Line="82" Column="68" />
-      <File FileName="MacGame/Classes/Sprite.cs" Line="42" Column="17" />
-      <File FileName="MacGame/Classes/InputManager.cs" Line="173" Column="35" />
-      <File FileName="MacGame/Classes/Player.cs" Line="28" Column="17" />
-      <File FileName="MacGame/Classes/Objekt.cs" Line="171" Column="13" />
-      <File FileName="MacGame/Classes/Tile.cs" Line="18" Column="31" />
-      <File FileName="MacGame/Classes/Collision.cs" Line="61" Column="33" />
+      <File FileName="MacGame/Classes/GamePlayScreen.cs" Line="142" Column="9" />
+      <File FileName="MacGame/Game.cs" Line="54" Column="1" />
+      <File FileName="MacGame/Classes/ScreenManager.cs" Line="156" Column="1" />
+      <File FileName="MacGame/Classes/GameScreen.cs" Line="2" Column="31" />
+      <File FileName="MacGame/Classes/TileScreen.cs" Line="92" Column="50" />
+      <File FileName="MacGame/Classes/Sprite.cs" Line="3" Column="1" />
+      <File FileName="MacGame/Classes/InputManager.cs" Line="897" Column="39" />
+      <File FileName="MacGame/Classes/Player.cs" Line="17" Column="9" />
+      <File FileName="MacGame/Classes/Objekt.cs" Line="138" Column="39" />
+      <File FileName="MacGame/Classes/Tile.cs" Line="23" Column="10" />
+      <File FileName="MacGame/Classes/Collision.cs" Line="41" Column="17" />
       <File FileName="MacGame/Classes/Utility.cs" Line="59" Column="26" />
-      <File FileName="MacGame/Classes/Level.cs" Line="10" Column="5" />
+      <File FileName="MacGame/Classes/Level.cs" Line="150" Column="48" />
       <File FileName="MacGame/Classes/Camera.cs" Line="1" Column="1" />
+      <File FileName="MacGame/Classes/MousePointer.cs" Line="21" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Maker" expanded="True">
             <Node name="Classes" expanded="True">
-              <Node name="Level.cs" selected="True" />
+              <Node name="MousePointer.cs" selected="True" />
             </Node>
             <Node name="Content" expanded="True" />
           </Node>

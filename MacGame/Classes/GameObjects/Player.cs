@@ -15,28 +15,32 @@ namespace maker
     private int jumpCounter;
     private int jumpSpeed = 10;
 
-    public Player ( 
-                   SpriteBatch spriteBatch,
-                   GraphicsDeviceManager graphics,
-                   Camera camera)
+    public Player (MacGame game)
     {
-      playerStates = new Dictionary<string, bool>();
-      _sprites = new Dictionary<string, Sprite>();
-      _spriteBatch = spriteBatch;
-      _graphics = graphics;
-      _camera = camera;
-      Speed = 10;
-      JumpHeight = 14;
+        playerStates = new Dictionary<string, bool>();
+        _sprites = new Dictionary<string, Sprite>();
+        _spriteBatch = game.spriteBatch;
+        _graphics = game.graphics;
+        _camera = game.camera;
+        Speed = 10;
+        JumpHeight = 14;
+        this.AddSprite("right",
+                        new Sprite(game.Content, 
+                        "maker_walk",1,4));
+        this.AddSprite("left",
+                           new Sprite(game.Content, 
+                       "maker_walk_left",1,4));
+      
+        this.SelectedAction = "right";
 
-      playerStates.Add("UP", false);
-      playerStates.Add("DOWN", false);
-      playerStates.Add("LEFT", false);
-      playerStates.Add("RIGHT", false);
-      playerStates.Add("JUMP", false);
-      playerStates.Add("RUN", false);
-      playerStates.Add("FALL", false);
-      playerStates.Add("DEAD", false);
-
+        playerStates.Add("UP", false);
+        playerStates.Add("DOWN", false);
+        playerStates.Add("LEFT", false);
+        playerStates.Add("RIGHT", false);
+        playerStates.Add("JUMP", false);
+        playerStates.Add("RUN", false);
+        playerStates.Add("FALL", false);
+        playerStates.Add("DEAD", false);
       //this.Position = new Vector2(this.Position.X - Speed, this.Position.Y);
     }
 
